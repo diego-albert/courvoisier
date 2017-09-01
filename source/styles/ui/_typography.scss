@@ -1,20 +1,33 @@
-.nav-section-font {
-	@extend %nav-font;
-	@include font-size(14px, 18px);
-	font-weight: bold;
-	color: $WHITE;
+.main--header {
+	@extend %lora-italic-font;
+	@include font-size(42px, 1.5em);
+	font-weight: normal;
+	@include min-screen($BREAKPOINT_S) {
+		@include font-size(64px, 1.5em);
+	}
 }
 
-.nav-form-font {
-	@extend %normal-font;
-	@include font-size(12px, 16px);
+.main--subtitle {
+	@extend %lora-regular-font;
+	@include font-size(18px, 1.5em);
 	font-weight: normal;
-	color: $BLACK;
+	@include min-screen($BREAKPOINT_S) {
+		@include font-size(22px, 1.5em);
+	}
 }
 
 .body-font {
-	@extend %normal-font;
+	@extend %engravers-font;
 	@include font-size(15px, 20px);
 	font-weight: normal;
-	color: $BLACK;
+}
+
+.button--label {
+	@extend %engravers-font;
+	@include font-size(16px, 1em);
+	font-weight: normal;
+	text-transform: uppercase;
+	@include min-screen($BREAKPOINT_S) {
+		@include font-size(18px, 1em);
+	}
 }

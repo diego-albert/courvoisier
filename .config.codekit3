@@ -17,34 +17,117 @@
 		"oO": 0,
 		"oS": 1
 		},
-	"\/deploy\/assets\/img\/noodles01.jpg": {
-		"ft": 16384,
-		"iS": 65493,
-		"oA": 0,
-		"oAP": "\/deploy\/assets\/img\/noodles01.jpg",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"q": 100
+	"\/deploy\/assets\/fonts\/engravers__gothic-webfont.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/engravers__gothic-webfont.eot",
+		"oF": 0
 		},
-	"\/deploy\/assets\/img\/noodles02.jpg": {
-		"ft": 16384,
-		"iS": 74601,
-		"oA": 0,
-		"oAP": "\/deploy\/assets\/img\/noodles02.jpg",
+	"\/deploy\/assets\/fonts\/engravers__gothic-webfont.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/engravers__gothic-webfont.svg",
 		"oF": 0,
-		"oIPL": 0,
 		"opt": 0,
-		"q": 100
+		"plM": 3758088159,
+		"prP": 0
 		},
-	"\/deploy\/assets\/img\/noodles03.jpg": {
-		"ft": 16384,
-		"iS": 125601,
-		"oA": 0,
-		"oAP": "\/deploy\/assets\/img\/noodles03.jpg",
+	"\/deploy\/assets\/fonts\/engravers__gothic-webfont.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/engravers__gothic-webfont.ttf",
+		"oF": 0
+		},
+	"\/deploy\/assets\/fonts\/engravers__gothic-webfont.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/engravers__gothic-webfont.woff",
+		"oF": 0
+		},
+	"\/deploy\/assets\/fonts\/engravers__gothic-webfont.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/engravers__gothic-webfont.woff2",
+		"oF": 0
+		},
+	"\/deploy\/assets\/fonts\/Lora-Italic.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/Lora-Italic.eot",
+		"oF": 0
+		},
+	"\/deploy\/assets\/fonts\/Lora-Italic.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/Lora-Italic.svg",
 		"oF": 0,
-		"oIPL": 0,
 		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/deploy\/assets\/fonts\/Lora-Italic.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/Lora-Italic.ttf",
+		"oF": 0
+		},
+	"\/deploy\/assets\/fonts\/Lora-Italic.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/Lora-Italic.woff",
+		"oF": 0
+		},
+	"\/deploy\/assets\/fonts\/Lora-Italic.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/Lora-Italic.woff2",
+		"oF": 0
+		},
+	"\/deploy\/assets\/fonts\/Lora-Regular.eot": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/Lora-Regular.eot",
+		"oF": 0
+		},
+	"\/deploy\/assets\/fonts\/Lora-Regular.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/Lora-Regular.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/deploy\/assets\/fonts\/Lora-Regular.ttf": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/Lora-Regular.ttf",
+		"oF": 0
+		},
+	"\/deploy\/assets\/fonts\/Lora-Regular.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/Lora-Regular.woff",
+		"oF": 0
+		},
+	"\/deploy\/assets\/fonts\/Lora-Regular.woff2": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/deploy\/assets\/fonts\/Lora-Regular.woff2",
+		"oF": 0
+		},
+	"\/deploy\/assets\/img\/gold-line-separator.png": {
+		"ft": 32768,
+		"iS": 1127,
+		"oA": 0,
+		"oAP": "\/deploy\/assets\/img\/gold-line-separator.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
 		"q": 100
 		},
 	"\/deploy\/assets\/scripts\/main.js": {
@@ -992,6 +1075,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/deploy\/assets\/styles\/_header.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/source\/styles\/_marquee.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/deploy\/assets\/styles\/_marquee.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1

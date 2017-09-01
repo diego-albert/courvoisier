@@ -1330,11 +1330,11 @@ el.core.utils.createNamespace(site, 'managers').componentsManager = (function() 
 		    '$el': $('body')
 		  });
 
-		  headerView = new site.views.Header({
-		    '$el': $('header')
-		  });
+		  // headerView = new site.views.Header({
+		  //   '$el': $('header')
+		  // });
 
-		  headerView.init();
+		  // headerView.init();
 		  pageView.init();
 
 		  // el.core.events.globalDispatcher.emit(el.core.events.event.APP_INIT);

@@ -47,33 +47,74 @@
   text-overflow: ellipsis;
 }
 */
-.nav-form-font, .body-font {
-  font-family: Arial, Helvetica, Times;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.nav-section-font {
-  font-family: Georgia, Times, 'Times New Roman', serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.nav-section-font {
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: bold;
-  color: #FFFFFF; }
-
-.nav-form-font {
-  font-size: 12px;
-  line-height: 16px;
+@font-face {
+  font-family: 'engravers_gothicregular';
+  src: url("http://local.courvoisier.com/assets/fonts/engravers__gothic-webfont.eot");
+  src: url("http://local.courvoisier.com/assets/fonts/engravers__gothic-webfont.eot?#iefix") format("embedded-opentype"), url("http://local.courvoisier.com/assets/fonts/engravers__gothic-webfont.woff2") format("woff2"), url("http://local.courvoisier.com/assets/fonts/engravers__gothic-webfont.woff") format("woff"), url("http://local.courvoisier.com/assets/fonts/engravers__gothic-webfont.ttf") format("truetype"), url("http://local.courvoisier.com/assets/fonts/engravers__gothic-webfont.svg#engravers_gothicregular") format("svg");
   font-weight: normal;
-  color: #000000; }
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Lora_italic';
+  src: url("http://local.courvoisier.com/assets/fonts/Lora-Italic.eot");
+  src: url("http://local.courvoisier.com/assets/fonts/Lora-Italic.eot?#iefix") format("embedded-opentype"), url("http://local.courvoisier.com/assets/fonts/Lora-Italic.woff2") format("woff2"), url("http://local.courvoisier.com/assets/fonts/Lora-Italic.woff") format("woff"), url("http://local.courvoisier.com/assets/fonts/Lora-Italic.ttf") format("truetype"), url("http://local.courvoisier.com/assets/fonts/Lora-Italic.svg#Lora-Italic") format("svg");
+  font-weight: normal;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'Lora_regular';
+  src: url("http://local.courvoisier.com/assets/fonts/Lora-Regular.eot");
+  src: url("http://local.courvoisier.com/assets/fonts/Lora-Regular.eot?#iefix") format("embedded-opentype"), url("http://local.courvoisier.com/assets/fonts/Lora-Regular.woff2") format("woff2"), url("http://local.courvoisier.com/assets/fonts/Lora-Regular.woff") format("woff"), url("http://local.courvoisier.com/assets/fonts/Lora-Regular.ttf") format("truetype"), url("http://local.courvoisier.com/assets/fonts/Lora-Regular.svg#Lora-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.main--subtitle {
+  font-family: 'Lora_regular', Helvetica, Times;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.main--header {
+  font-family: 'Lora_italic', Helvetica, Times;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.body-font, .button--label {
+  font-family: 'engravers_gothicregular', Helvetica, Times;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.main--header {
+  font-size: 42px;
+  line-height: 1.5em;
+  font-weight: normal; }
+  @media screen and (min-width: 640px) {
+    .main--header {
+      font-size: 64px;
+      line-height: 1.5em; } }
+
+.main--subtitle {
+  font-size: 18px;
+  line-height: 1.5em;
+  font-weight: normal; }
+  @media screen and (min-width: 640px) {
+    .main--subtitle {
+      font-size: 22px;
+      line-height: 1.5em; } }
 
 .body-font {
   font-size: 15px;
   line-height: 20px;
+  font-weight: normal; }
+
+.button--label {
+  font-size: 16px;
+  line-height: 1em;
   font-weight: normal;
-  color: #000000; }
+  text-transform: uppercase; }
+  @media screen and (min-width: 640px) {
+    .button--label {
+      font-size: 18px;
+      line-height: 1em; } }
 
 a {
   text-decoration: none;
@@ -88,17 +129,20 @@ button {
   button:hover {
     cursor: pointer; }
 
-.block-button {
+.block--button {
   border: none;
   outline: none;
   overflow: hidden;
-  background: black;
-  /* Old browsers */
-  background: -webkit-gradient(linear, left top, left bottom, from(white), color-stop(80%, black));
-  background: linear-gradient(to bottom, white 0%, black 80%);
-  border-radius: 35%;
+  background: transparent;
   text-transform: uppercase;
-  color: #FFFFFF; }
+  color: #D3AC6B;
+  border: solid 1px #D3AC6B;
+  padding: 18px 30px;
+  -webkit-transition: background 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: background 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  @media screen and (min-width: 640px) {
+    .block--button:hover {
+      background-color: rgba(190, 166, 122, 0.6); } }
 
 html,
 body {
@@ -135,34 +179,19 @@ p {
 .no-break {
   white-space: nowrap; }
 
-.watcher-js .js-view-title,
-.watcher-js .js-view-block,
-.watcher-js .js-view-img {
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transform: translateY(50px);
-          transform: translateY(50px);
-  -webkit-transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-
-.watcher-js.entered .js-view-title,
-.watcher-js.entered .js-view-img {
-  opacity: 1;
-  visibility: visible;
-  -webkit-transform: translateY(0px);
-          transform: translateY(0px); }
-
-.watcher-js.entered .js-view-block {
-  opacity: 1;
-  visibility: visible;
-  -webkit-transform: translateY(0px);
-          transform: translateY(0px);
-  -webkit-transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s, -webkit-transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
-  transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s, -webkit-transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
-  transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
-  transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s, -webkit-transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s; }
+section {
+  position: relative; }
+  section:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    border-bottom: 3px solid transparent;
+    -o-border-image: url("http://local.courvoisier.com/assets//img/gold-line-separator.png") 100% 0 stretch;
+       border-image: url("http://local.courvoisier.com/assets//img/gold-line-separator.png") 100% 0 stretch; }
 
 br.mobile {
   display: none; }
@@ -181,3 +210,23 @@ br.xs-small {
   @media screen and (max-width: 440px) {
     br.xs-small {
       display: block; } }
+
+.courvoisier-0917 section.marquee {
+  background-image: url("http://baconmockup.com/1280/960");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
+  .courvoisier-0917 section.marquee .header-wrapper {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    padding: 10%;
+    color: #FFFFFF; }
+    .courvoisier-0917 section.marquee .header-wrapper .main--header {
+      display: block;
+      margin-bottom: 15px; }
+    .courvoisier-0917 section.marquee .header-wrapper .main--subtitle {
+      display: block;
+      margin-bottom: 30px; }

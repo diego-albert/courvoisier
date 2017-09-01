@@ -1,0 +1,29 @@
+.courvoisier-0917 {
+
+	section.marquee {
+		background-image: url("http://baconmockup.com/1280/960");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+
+		.header-wrapper {
+			position: absolute;
+			width: 100%;
+			top: 50%;
+			transform: translateY(-50%);
+			padding: 10%;
+			color: $COLOR_WHITE;
+
+			.main--header {
+				display: block;
+				margin-bottom: 15px;
+			}
+			.main--subtitle {
+				display: block;
+				margin-bottom: 30px;
+			}
+
+		}
+	}
+
+}

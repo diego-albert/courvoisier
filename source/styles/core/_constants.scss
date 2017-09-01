@@ -1,9 +1,8 @@
 //----------------------------------------
 // Settings
 //----------------------------------------
-$jeet-gutter: 1.04;
-$url_prefix: "http://local.npc2016.com";
-// $url_prefix: "http://npc2016.elespacio.net";
+
+$url_prefix: "http://local.courvoisier.com";
 
 //----------------------------------------
 // Dimensions
@@ -27,10 +26,12 @@ $BREAKPOINT_XL: 1600px;
 // Colors
 //----------------------------------------
 
-$BLACK: #000000;
-$WHITE: #FFFFFF;
+$COLOR_BLACK: #000000;
+$COLOR_WHITE: #FFFFFF;
 
-$DEFAULT_LINK_COLOR: $WHITE;
+$COLOR_GOLD: #D3AC6B;
+
+$DEFAULT_LINK_COLOR: $COLOR_WHITE;
 
 $COLOR_FACEBOOK: #3C5A9B;
 $COLOR_PINTEREST: #C42628;
@@ -102,6 +103,8 @@ $PAGE_Z: 10;
 //----------------------------------------
 $HIDE_DURATION: 0.2s;
 $HIDE_EASING: $easeOutSine;
+
+$HOVER_DURATION: 0.25s;
 
 $SHOW_DURATION: 0.75s;
 $SHOW_EASING: $easeOutQuad;
