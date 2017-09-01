@@ -1,0 +1,20 @@
+.nav-section-font {
+	@extend %nav-font;
+	@include font-size(14px, 18px);
+	font-weight: bold;
+	color: $WHITE;
+}
+
+.nav-form-font {
+	@extend %normal-font;
+	@include font-size(12px, 16px);
+	font-weight: normal;
+	color: $BLACK;
+}
+
+.body-font {
+	@extend %normal-font;
+	@include font-size(15px, 20px);
+	font-weight: normal;
+	color: $BLACK;
+}

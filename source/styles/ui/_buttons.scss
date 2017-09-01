@@ -1,0 +1,32 @@
+
+a {
+
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+button {
+
+	border: none;
+	outline: none;
+	background: none;
+	cursor: pointer;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.block-button {
+
+	border: none;
+	outline: none;
+	overflow: hidden;
+	background: rgb(0,0,0); /* Old browsers */
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(0,0,0,1) 80%);
+	border-radius: 35%;
+	text-transform: uppercase;
+	color: $WHITE;
+}
+

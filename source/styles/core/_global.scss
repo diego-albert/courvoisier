@@ -1,0 +1,109 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+*, button {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+ul, li {
+  @include removeSpace;
+}
+
+::-moz-selection {
+  background: rgba($DEFAULT_LINK_COLOR, 0.3);
+}
+
+::selection {
+  background: rgba($DEFAULT_LINK_COLOR, 0.3);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @include removeSpace;
+
+  display: inline-block;
+  position: relative;
+}
+
+p {
+
+  @include removeSpace;
+}
+
+.no-break {
+  white-space: nowrap;
+}
+
+.grid-container {
+  // @include center(1440px);
+}
+
+// line breaks
+
+// Transition between pages
+
+.watcher-js {
+  .js-view-title,
+  .js-view-block,
+  .js-view-img {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(50px);
+    transition: opacity 1s $easeOutQuad, transform .8s $easeOutQuad;
+  }
+
+  &.entered {
+    .js-view-title,
+    .js-view-img {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0px);
+    }
+    .js-view-block {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0px);
+      transition: opacity 1.5s $easeOutQuad .5s, transform .8s $easeOutQuad .5s;
+    }
+  }
+}
+
+// line breaks
+br.mobile {
+  display: none;
+
+  @include max-screen($BREAKPOINT_S) {
+
+    display: block;
+  }
+}
+
+br.not-mobile {
+  display: none;
+
+  @include min-screen($BREAKPOINT_S) {
+
+    display: block;
+  }
+}
+
+br.xs-small {
+  display: none;
+
+  @include max-screen($BREAKPOINT_XS) {
+
+    display: block;
+  }
+}
+
+
+
+
+
+
+
