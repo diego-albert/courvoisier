@@ -17,9 +17,10 @@
 }
 
 .body-font {
-	@extend %engravers-font;
-	@include font-size(15px, 20px);
+	@extend %lora-regular-font;
+	@include font-size(15px, 1.3em);
 	font-weight: normal;
+	letter-spacing: 0.15px;
 }
 
 .button--label {
@@ -29,5 +30,20 @@
 	text-transform: uppercase;
 	@include min-screen($BREAKPOINT_S) {
 		@include font-size(18px, 1em);
+	}
+}
+
+.highlight-text {
+	@extend %engravers-font;
+	@include font-size(32px, .8em);
+	font-weight: normal;
+	text-transform: uppercase;
+	&.medium {
+		@include font-size(16px, .8em);
+		letter-spacing: 0.25px;
+	}
+	&.small {
+		@include font-size(14px, .8em);
+		letter-spacing: 0.25px;
 	}
 }

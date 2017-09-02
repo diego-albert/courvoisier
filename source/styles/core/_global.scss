@@ -35,6 +35,12 @@ p {
   @include removeSpace;
 }
 
+.upper-reg {
+  position: relative;
+  font-size: 16px;
+  top: -10px;
+}
+
 .no-break {
   white-space: nowrap;
 }
