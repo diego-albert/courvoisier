@@ -5,7 +5,8 @@ el.core.utils.environment = (function($) {
 
   var pixelRatio = window.devicePixelRatio !== undefined ? window.devicePixelRatio : 1,
       uaStr = window.navigator.userAgent.toLowerCase(),
-      loggingEnabled = window.location.href.indexOf('debug') > -1,
+      // loggingEnabled = window.location.href.indexOf('debug') > -1,
+      loggingEnabled = true,
       $html = $('html'),
 
       _isDevice = Boolean(bowser.mobile) || Boolean(bowser.tablet),

@@ -1,0 +1,38 @@
+.courvoisier-0917 {
+
+	.recipe-slider {
+		width: 100%;
+		height: 100%;
+		position: relative;
+
+		.slider-wrapper {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+
+			.slick-list,
+			.slick-track {
+				height: 100%;
+			}
+
+			.slick-arrow {
+				position: absolute;
+				z-index: 2;
+				top: 50%;
+				margin-top: -34px;
+				left: 0;
+				&.slick-next {
+					right: 0;
+					left: auto;
+				}
+			}
+
+			.slick-dots {
+				position: relative;
+				padding: 30px 0 0 0;
+			}
+
+		}
+	}
+
+}

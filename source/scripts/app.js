@@ -19,20 +19,22 @@
 
 		function initJS() {
 
+			console.log('Init JS');
+
 			el.core.managers.layoutManager.init();
 
 			pageView = new site.views.Page({
 		    '$el': $('body')
 		  });
 
-		  // headerView = new site.views.Header({
-		  //   '$el': $('header')
-		  // });
+		  headerView = new site.views.Header({
+		    '$el': $('header')
+		  });
 
-		  // headerView.init();
+		  headerView.init();
 		  pageView.init();
 
-		  // el.core.events.globalDispatcher.emit(el.core.events.event.APP_INIT);
+		  el.core.events.globalDispatcher.emit(el.core.events.event.APP_INIT);
 		}
 
 		initJS();

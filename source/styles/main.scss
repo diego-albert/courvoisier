@@ -5,11 +5,15 @@
 @import 'core/mixins';
 @import 'core/media-queries';
 
+@import 'libs/slick';
+
 @import 'ui/fonts';
 @import 'ui/typography';
 @import 'ui/buttons';
 
 @import 'core/global';
+
+@import 'components/recipe-slider';
 
 
 @import 'header';
