@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<h1 id="courvoisier">courvoisier</h1>
+
+<h3 id="developmentenvironmentsetup">Development environment setup</h3>
+
+<p>For compilation of JS and SCSS files we used <a href="https://incident57.com/codekit/">CodeKit App</a>. Main JS file is <code>/source/scripts/main.js</code>, main SCSS files are <code>/source/styles/main.scss</code>, please point them in the application, and set the output directory respectively to <code>/deploy/assets/scripts/</code> and <code>/deploy/assets/styles</code> folders.</p>
+
+<h3 id="developmentsnapshot">Development snapshot</h3>
+
+<ul>
+<li>for styling, project is using <a href="http://sass-lang.com/">SASS</a> with <a href="http://jeet.gs/">Jeet</a> mixins, <a href="https://incident57.com/codekit/help.html#autoprefixer">autoprefixer</a> needs to be set to: <code>&gt; 1%, last 2 versions, Firefox ESR, Opera 12.1, ie &gt;= 9, Android &gt;= 4.4, Safari &gt;= 6, iOS &gt;= 8</code>,</li>
+<li>for front end code JavaScript is being used along with <a href="https://jquery.com/">jQuery</a>,</li>
+<li>all icons are crated using SVG font via <a href="https://icomoon.io/app">IcoMoon.io</a>. Current set can be extended by importing <code>/setup/icomoon.io.json</code> file and adding needed assets. Then after replacing generated font files in <code>/assets/fonts/</code>. Code in <code>_fonts.scss</code> also needs to be updated accordingly to point new assets.</li>
+</ul>
+
+<h3 id="deployment">Deployment</h3>
+
+<ul>
+<li>in local environment page runs using PHP on Apache server at <code>local.courvoisier.com</code> (please set your local environemnt accordingly). Delivery contains only static files in deploy folder.</li>
+</ul>
+
+</body>
+</html>
