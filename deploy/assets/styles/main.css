@@ -150,7 +150,7 @@
   font-weight: normal;
   font-style: normal; }
 
-.main--subtitle, .body-font {
+.main--subtitle, .data-font, .body-font {
   font-family: 'Lora_regular', Helvetica, Times;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
@@ -184,6 +184,17 @@
       font-size: 22px;
       line-height: 1.5em; } }
 
+.data-font {
+  font-size: 12px;
+  line-height: 1.3em;
+  font-weight: normal;
+  text-transform: capitalize;
+  letter-spacing: 0.15px; }
+  @media screen and (min-width: 640px) {
+    .data-font {
+      font-size: 15px;
+      line-height: 1.3em; } }
+
 .body-font {
   font-size: 15px;
   line-height: 1.3em;
@@ -211,6 +222,10 @@
   text-transform: uppercase; }
   @media screen and (min-width: 640px) {
     .input--label {
+      font-size: 30px;
+      line-height: 1em; } }
+  @media screen and (min-width: 960px) {
+    .input--label {
       font-size: 40px;
       line-height: 1em; } }
 
@@ -219,6 +234,9 @@
   line-height: 0.8em;
   font-weight: normal;
   text-transform: uppercase; }
+  .highlight-text.large {
+    font-size: 22px;
+    line-height: 0.8em; }
   .highlight-text.medium {
     font-size: 16px;
     line-height: 0.8em;
@@ -231,6 +249,9 @@
     .highlight-text {
       font-size: 40px;
       line-height: 0.8em; }
+      .highlight-text.large {
+        font-size: 36px;
+        line-height: 0.8em; }
       .highlight-text.medium {
         font-size: 20px;
         line-height: 0.8em; }
@@ -257,8 +278,8 @@ button {
   overflow: hidden;
   background: transparent;
   text-transform: uppercase;
-  color: #D3AC6B;
-  border: solid 1px #D3AC6B;
+  color: #cb9d3b;
+  border: solid 1px #cb9d3b;
   padding: 18px 30px;
   -webkit-transition: background 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transition: background 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
@@ -339,6 +360,12 @@ p {
   .courvoisier-0917 section {
     position: relative;
     min-height: 640px; }
+    @media screen and (min-width: 640px) {
+      .courvoisier-0917 section {
+        min-height: 825px; } }
+    @media screen and (min-width: 960px) {
+      .courvoisier-0917 section {
+        min-height: 670px; } }
     .courvoisier-0917 section:after {
       content: "";
       display: block;
@@ -349,7 +376,8 @@ p {
       height: 0;
       border-bottom: 3px solid transparent;
       -o-border-image: url("http://local.courvoisier.com/assets//img/gold-line-separator.png") 100% 0 stretch;
-         border-image: url("http://local.courvoisier.com/assets//img/gold-line-separator.png") 100% 0 stretch; }
+         border-image: url("http://local.courvoisier.com/assets//img/gold-line-separator.png") 100% 0 stretch;
+      z-index: 10; }
 
 br.mobile {
   display: none; }
@@ -409,6 +437,9 @@ br.xs-small {
         background-color: rgba(255, 255, 255, 0.8);
         -webkit-transition: height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         transition: height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        @media screen and (min-width: 640px) {
+          .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-info {
+            min-height: 350px; } }
         .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-info.right-align {
           left: auto;
           right: 0; }
@@ -423,7 +454,7 @@ br.xs-small {
             color: #be9b45;
             margin-bottom: 5px; }
           .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-info .main-info .recipe-subtitle {
-            color: #93752f;
+            color: #9e7625;
             margin-bottom: 15px; }
           .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-info .main-info .recipe-description {
             color: #2e2e2e; }
@@ -519,17 +550,124 @@ br.xs-small {
 .courvoisier-0917 .map-component {
   position: relative;
   width: 100%;
-  height: 100%;
-  background-color: pink; }
-  .courvoisier-0917 .map-component .controls {
+  height: 100%; }
+  .courvoisier-0917 .map-component .searchbar-wrapper {
     position: relative;
     width: 100%;
     height: 42px;
     background-color: white; }
-  .courvoisier-0917 .map-component #map-canvas {
+    .courvoisier-0917 .map-component .searchbar-wrapper input {
+      width: 100%;
+      height: 42px;
+      border: 0;
+      border-radius: 0;
+      padding: 15px 0;
+      padding-left: 48px; }
+    @media screen and (min-width: 640px) {
+      .courvoisier-0917 .map-component .searchbar-wrapper {
+        height: 77px; }
+        .courvoisier-0917 .map-component .searchbar-wrapper input {
+          height: 77px;
+          padding-left: 115px; } }
+  .courvoisier-0917 .map-component .interactive-wrapper {
+    position: relative;
     width: 100%;
-    height: calc(100% - 42px);
-    background-color: grey; }
+    height: calc(100% - 42px); }
+    @media screen and (min-width: 640px) {
+      .courvoisier-0917 .map-component .interactive-wrapper {
+        height: calc(100% - 77px); } }
+  .courvoisier-0917 .map-component .results-container {
+    position: absolute;
+    width: 100%;
+    height: 210px;
+    background-color: rgba(255, 255, 255, 0.95);
+    bottom: 0;
+    left: 0;
+    padding: 15px;
+    z-index: 1; }
+    @media screen and (min-width: 640px) {
+      .courvoisier-0917 .map-component .results-container {
+        height: 250px; } }
+    @media screen and (min-width: 960px) {
+      .courvoisier-0917 .map-component .results-container {
+        width: 350px;
+        height: 100%;
+        padding: 50px 65px 0 50px;
+        top: 0;
+        bottom: auto;
+        left: 0; } }
+    .courvoisier-0917 .map-component .results-container .hide-scroll {
+      width: 100%;
+      height: 100%;
+      overflow-y: hidden; }
+    .courvoisier-0917 .map-component .results-container .content {
+      width: 100%;
+      height: 100%;
+      text-align: center; }
+      @media screen and (min-width: 960px) {
+        .courvoisier-0917 .map-component .results-container .content {
+          text-align: left;
+          overflow-y: auto;
+          width: calc(100% + 20px);
+          padding-right: 20px; } }
+      .courvoisier-0917 .map-component .results-container .content .recipe-header {
+        color: #9e7625; }
+        .courvoisier-0917 .map-component .results-container .content .recipe-header:after {
+          display: block;
+          content: "";
+          width: 80px;
+          height: 1px;
+          background-color: #cb9d3b;
+          position: relative;
+          left: 50%;
+          margin: 15px 0 10px;
+          margin-left: -40px; }
+        @media screen and (min-width: 960px) {
+          .courvoisier-0917 .map-component .results-container .content .recipe-header {
+            margin-bottom: 35px; }
+            .courvoisier-0917 .map-component .results-container .content .recipe-header:after {
+              display: none; } }
+      .courvoisier-0917 .map-component .results-container .content .item {
+        color: #2e2e2e; }
+        .courvoisier-0917 .map-component .results-container .content .item p {
+          margin-bottom: 10px; }
+          .courvoisier-0917 .map-component .results-container .content .item p span {
+            display: block; }
+        @media screen and (min-width: 960px) {
+          .courvoisier-0917 .map-component .results-container .content .item:after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            position: relative;
+            background-color: #2e2e2e;
+            margin-bottom: 25px;
+            opacity: 0.25; }
+          .courvoisier-0917 .map-component .results-container .content .item:last-child {
+            padding-bottom: 25px; }
+            .courvoisier-0917 .map-component .results-container .content .item:last-child:after {
+              display: none; } }
+      .courvoisier-0917 .map-component .results-container .content .slick-arrow {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        margin-top: -34px;
+        left: 0; }
+        .courvoisier-0917 .map-component .results-container .content .slick-arrow.slick-next {
+          right: 0;
+          left: auto; }
+  .courvoisier-0917 .map-component .map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; }
+    .courvoisier-0917 .map-component .map-container #map-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100% + 20px);
+      z-index: 0; }
 
 .courvoisier-0917 section.marquee {
   background-image: url("http://baconmockup.com/1280/960");

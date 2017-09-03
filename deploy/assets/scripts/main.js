@@ -4180,10 +4180,11 @@ site.components.MapComponent = el.core.utils.class.extend(function(options){
 
 	this.$el = this.options.$el;
 	this.$mapView = document.getElementById('map-canvas');
+	this.$slider = this.$el.find('.results');
 
 	this.map = null;
 	this.defaultZoom = 15;
-	// this.$slider = this.$el.find('.slider-wrapper');
+	this.sliderMapSearch = false;
 
 	this._register();
 
@@ -4194,8 +4195,14 @@ site.components.MapComponent = el.core.utils.class.extend(function(options){
 }, site.components.BaseComponent);
 
 site.components.MapComponent.prototype.init = function() {
-	console.log('map loaded!');
+
 	this.createMap();
+
+	// if (window.innerWidth < 960 ) {
+
+	// 	this.initSliderMapSearch();
+
+	// }
 
 }
 
@@ -4311,21 +4318,42 @@ site.components.MapComponent.prototype.createMap = function() {
 	that.map.mapTypes.set('styled_map', styledMapType);
 	that.map.setMapTypeId('styled_map');
 
-return;
+}
 
+site.components.MapComponent.prototype.destroySliderMapSearch = function() {
+	this.$slider.slick('unslick');
+	this.sliderMapSearch = false;
+}
 
-	// Bounds for North America
-	// that.strictBounds = new google.maps.LatLngBounds(new google.maps.LatLng(46.70973, 4.1748),new google.maps.LatLng(55.40406, 15.07324));
-
+site.components.MapComponent.prototype.initSliderMapSearch = function() {
+	this.$slider.slick({
+	  infinite: true,
+	  slidesToShow: 1,
+	  slidesToScroll: 1,
+	  arrows: true,
+	  autoplay: false,
+	  speed: 300,
+	  prevArrow: '<button type="button" data-role="none" class="slick-prev black" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-arrow-left"></span></button>',
+    nextArrow: '<button type="button" data-role="none" class="slick-next black" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-arrow-right"></span></button>',
+    dots: false
+	});
+	this.sliderMapSearch = true;
 }
 
 site.components.MapComponent.prototype.resize = function() {
+
+	if (window.innerWidth < 960 && !this.sliderMapSearch ) {
+		this.initSliderMapSearch();
+	} else if ( window.innerWidth >= 960 && this.sliderMapSearch ){
+		this.destroySliderMapSearch();
+	}
 
 }
 
 site.components.MapComponent.prototype.destroy = function() {
 
 	this.parent.destroy.call(this);
+	this.$slider.slick('unslick');
 
 }
 

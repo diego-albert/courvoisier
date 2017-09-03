@@ -4,20 +4,146 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
-		background-color: pink;
-
-		.controls {
+		.searchbar-wrapper {
 			position: relative;
 			width: 100%;
 			height: 42px;
 			background-color: white;
+			input {
+				width: 100%;
+				height: 42px;
+				border: 0;
+				border-radius: 0;
+				padding: 15px 0;
+				padding-left: 48px;
+			}
+			@include min-screen($BREAKPOINT_S) {
+				height: 77px;
+				input {
+					height: 77px;
+					padding-left: 115px;
+				}
+			}
 		}
-
-		#map-canvas {
+		.interactive-wrapper {
+			position: relative;
 			width: 100%;
 			height: calc(100% - 42px);
-			background-color: grey;
+			@include min-screen($BREAKPOINT_S) {
+				height: calc(100% - 77px);
+			}
+
 		}
+		.results-container {
+			position: absolute;
+			width: 100%;
+			height: 210px;
+  		background-color: rgba(255, 255, 255, 0.95);
+  		bottom: 0;
+			left: 0;
+			padding: 15px;
+			z-index: 1;
+			@include min-screen($BREAKPOINT_S) {
+				height: 250px;
+			}
+			@include min-screen($BREAKPOINT_M) {
+				width: 350px;
+				height: 100%;
+				padding: 50px 65px 0 50px;
+				top: 0;
+				bottom: auto;
+				left: 0;
+			}
+			.hide-scroll {
+				width: 100%;
+				height: 100%;
+				overflow-y: hidden;
+			}
+			.content {
+				width: 100%;
+				height: 100%;
+				text-align: center;
+				@include min-screen($BREAKPOINT_M) {
+					text-align: left;
+					overflow-y: auto;
+					width: calc(100% + 20px);
+					padding-right: 20px;
+				}
+				.recipe-header {
+					color: $COLOR_GOLD_DARK;
+					&:after {
+						display: block;
+						content: "";
+						width: 80px;
+						height: 1px;
+						background-color: $COLOR_GOLD;
+						position: relative;
+						left: 50%;
+						margin: 15px 0 10px;
+						margin-left: -40px;
+					}
+					@include min-screen($BREAKPOINT_M) {
+						margin-bottom: 35px;
+						&:after {
+							display: none;
+						}
+					}
+				}
+				.item {
+					color: $COLOR_SOFT_BLACK;
+					p {
+						margin-bottom: 10px;
+						span {
+							display: block;
+						}
+					}
+					@include min-screen($BREAKPOINT_M) {
+						&:after {
+							content: "";
+							display: block;
+							width: 100%;
+							height: 1px;
+							position: relative;
+							background-color: $COLOR_SOFT_BLACK;
+							margin-bottom: 25px;
+							opacity: 0.25;
+						}
+						&:last-child {
+							padding-bottom: 25px;
+							&:after {
+								display: none;
+							}
+						}
+					}
+				}
+				.slick-arrow {
+					position: absolute;
+					z-index: 2;
+					top: 50%;
+					margin-top: -34px;
+					left: 0;
+					&.slick-next {
+						right: 0;
+						left: auto;
+					}
+				}
+			}
+		}
+		.map-container {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			#map-canvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: calc(100% + 20px); // Google logo & privacy policy hidden
+				z-index: 0;
+			}
+		}
+
 	}
 
 }

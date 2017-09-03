@@ -17,6 +17,17 @@
 	}
 }
 
+.data-font {
+	@extend %lora-regular-font;
+	@include font-size(12px, 1.3em);
+	font-weight: normal;
+	text-transform: capitalize;
+	letter-spacing: 0.15px;
+	@include min-screen($BREAKPOINT_S) {
+		@include font-size(15px, 1.3em);
+	}
+}
+
 .body-font {
 	@extend %lora-regular-font;
 	@include font-size(15px, 1.3em);
@@ -43,6 +54,9 @@
 	font-weight: normal;
 	text-transform: uppercase;
 	@include min-screen($BREAKPOINT_S) {
+		@include font-size(30px, 1em);
+	}
+	@include min-screen($BREAKPOINT_M) {
 		@include font-size(40px, 1em);
 	}
 }
@@ -52,6 +66,9 @@
 	@include font-size(32px, .8em);
 	font-weight: normal;
 	text-transform: uppercase;
+	&.large {
+		@include font-size(22px, .8em);
+	}
 	&.medium {
 		@include font-size(16px, .8em);
 		letter-spacing: 0.25px;
@@ -62,6 +79,9 @@
 	}
 	@include min-screen($BREAKPOINT_S) {
 		@include font-size(40px, .8em);
+		&.large {
+			@include font-size(36px, .8em);
+		}
 		&.medium {
 			@include font-size(20px, .8em);
 		}

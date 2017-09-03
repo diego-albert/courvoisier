@@ -51,6 +51,12 @@ p {
   section {
     position: relative;
     min-height: 640px;
+    @include min-screen($BREAKPOINT_S){
+      min-height: 825px;
+    }
+    @include min-screen($BREAKPOINT_M){
+      min-height: 670px;
+    }
     &:after {
       content: "";
       display: block;
@@ -61,6 +67,7 @@ p {
       height: 0;
       border-bottom: 3px solid transparent;
       border-image: url("#{$url_prefix}/assets//img/gold-line-separator.png") 100% 0 stretch;
+      z-index: 10;
     }
   }
 }
