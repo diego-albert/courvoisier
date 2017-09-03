@@ -156,11 +156,11 @@
   -moz-osx-font-smoothing: grayscale; }
 
 .main--header {
-  font-family: 'Lora_italic', Helvetica, Times;
+  font-family: 'Lora_italic', 'Lora_regular', Times;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.button--label, .highlight-text {
+.button--label, .input--label, .highlight-text {
   font-family: 'engravers_gothicregular', Helvetica, Times;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
@@ -168,7 +168,8 @@
 .main--header {
   font-size: 42px;
   line-height: 1.5em;
-  font-weight: normal; }
+  font-weight: normal;
+  font-style: italic; }
   @media screen and (min-width: 640px) {
     .main--header {
       font-size: 64px;
@@ -201,6 +202,16 @@
   @media screen and (min-width: 640px) {
     .button--label {
       font-size: 18px;
+      line-height: 1em; } }
+
+.input--label {
+  font-size: 20px;
+  line-height: 1em;
+  font-weight: normal;
+  text-transform: uppercase; }
+  @media screen and (min-width: 640px) {
+    .input--label {
+      font-size: 40px;
       line-height: 1em; } }
 
 .highlight-text {
@@ -504,6 +515,21 @@ br.xs-small {
             transition: opacity 0.175s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .courvoisier-0917 .recipe-slider .slider-wrapper .slick-dots li.slick-active button:before {
           opacity: 1; }
+
+.courvoisier-0917 .map-component {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: pink; }
+  .courvoisier-0917 .map-component .controls {
+    position: relative;
+    width: 100%;
+    height: 42px;
+    background-color: white; }
+  .courvoisier-0917 .map-component #map-canvas {
+    width: 100%;
+    height: calc(100% - 42px);
+    background-color: grey; }
 
 .courvoisier-0917 section.marquee {
   background-image: url("http://baconmockup.com/1280/960");

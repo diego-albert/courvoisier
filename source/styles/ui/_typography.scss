@@ -2,6 +2,7 @@
 	@extend %lora-italic-font;
 	@include font-size(42px, 1.5em);
 	font-weight: normal;
+	font-style: italic;
 	@include min-screen($BREAKPOINT_S) {
 		@include font-size(64px, 1.5em);
 	}
@@ -33,6 +34,16 @@
 	text-transform: uppercase;
 	@include min-screen($BREAKPOINT_S) {
 		@include font-size(18px, 1em);
+	}
+}
+
+.input--label {
+	@extend %engravers-font;
+	@include font-size(20px, 1em);
+	font-weight: normal;
+	text-transform: uppercase;
+	@include min-screen($BREAKPOINT_S) {
+		@include font-size(40px, 1em);
 	}
 }
 

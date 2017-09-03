@@ -15,14 +15,28 @@
 
 		<section class="marquee fullscreen-js">
 			<div class="header-wrapper">
-				<h1 class="main--header">Lorem ipsum</h1>
+				<h1 class="main--header">Lorem Ipsum</h1>
 				<h2 class="main--subtitle">Lorem ipsum dolor sit amet,<br /> consectetur adipiscing elit,<br /> sed do eiusmod.</h2>
 				<button class="block--button button--label gold">Find your bar</button>
 			</div>
 		</section>
 
 		<section class="map-section fullscreen-js">
-			<h1>Hello world!</h1>
+			<div class="map-component" data-component="map-component">
+<!-- 				<div class="searchbar-wrapper">
+					<form action="">
+						<input type="text" name="adress">
+					</form>
+				</div>
+				<div class="interactive-wrapper">
+					<div class="results-container"></div>
+					<div class="map-container"></div>
+				</div> -->
+
+				<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+				<div class="container" id="map-canvas"></div>
+
+			</div>
 		</section>
 
 		<section class="recipe-section fullscreen-js">
@@ -80,6 +94,8 @@
 			</div>
 
 		</section>
+
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM7peyUS7UevLclDBLKjYGFtluRuYjFgk"></script>
 
 	</div>
 

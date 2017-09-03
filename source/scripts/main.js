@@ -17,6 +17,7 @@
 
 // @codekit-prepend "site/components/base-component.js"
 // @codekit-prepend "site/components/recipe-slider.js"
+// @codekit-prepend "site/components/map-component.js"
 
 // @codekit-prepend "site/views/page-view.js"
 // @codekit-prepend "site/views/header-view.js"
