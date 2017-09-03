@@ -21,6 +21,9 @@
 	@include font-size(15px, 1.3em);
 	font-weight: normal;
 	letter-spacing: 0.15px;
+	@include min-screen($BREAKPOINT_S) {
+		@include font-size(18px, 1.3em);
+	}
 }
 
 .button--label {
@@ -45,5 +48,14 @@
 	&.small {
 		@include font-size(14px, .8em);
 		letter-spacing: 0.25px;
+	}
+	@include min-screen($BREAKPOINT_S) {
+		@include font-size(40px, .8em);
+		&.medium {
+			@include font-size(20px, .8em);
+		}
+		&.small {
+			@include font-size(18px, .8em);
+		}
 	}
 }

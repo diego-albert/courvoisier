@@ -37,13 +37,27 @@
 				}
 				.recipe-info {
 					position: absolute;
-					top: 25%;
+					top: 15%;
 					left: 0;
-					width: 80%;
-					height: auto;
-					padding: 15px 30px;
-					transform: translateY(-50%);
+					// width: 75%;
+					width: 280px;
+					height: 40%;
+					min-height: 285px;
+					padding: 15px 15% 15px 30px;
+					overflow: hidden;
 					background-color: rgba(255,255,255,0.8);
+					transition: height $SHOW_DURATION $SHOW_EASING;
+					&.right-align {
+						left: auto;
+						right: 0;
+					}
+					&.open {
+						height: 85%;
+						.extra-info {
+							visibility: visible;
+							opacity: 1;
+						}
+					}
 
 					.main-info {
 						position: relative;
@@ -57,9 +71,58 @@
 						}
 						.recipe-description {
 							color: $COLOR_SOFT_BLACK;
-							padding-right: 50px;
 						}
 					}
+					.extra-info {
+						visibility: hidden;
+						opacity: 0;
+						transition: visibility $SHOW_DURATION/2 $SHOW_EASING, opacity $SHOW_DURATION/2 $SHOW_EASING;
+						.highlight-text {
+							margin: 20px 0;
+							@include min-screen($BREAKPOINT_S){
+								margin: 30px 0;
+							}
+						}
+					}
+
+					@include min-screen($BREAKPOINT_S){
+						width: 350px;
+						left: 10%;
+						padding: 50px 70px 50px 50px;
+						&.right-align {
+							left: auto;
+							right: 10%;
+						}
+					}
+
+					@include min-screen($BREAKPOINT_M){
+						height: 100%;
+						top: 0;
+						.extra-info {
+							visibility: visible;
+							opacity: 1;
+						}
+						.arrow-btn {
+							display: none;
+						}
+					}
+
+					ul.recipe-list {
+					    list-style: none; /* Remove list bullets */
+					    padding: 0;
+					    margin: 0;
+					}
+
+					li p {
+						display: inline;
+					}
+
+					li:before {
+					    content:"·";
+					    padding-right: 8px;
+					    color: $COLOR_SOFT_BLACK;
+					}
+
 				}
 			}
 
@@ -76,8 +139,51 @@
 			}
 
 			.slick-dots {
-				position: relative;
-				padding: 30px 0 0 0;
+			    position: absolute;
+			    bottom: 3px;
+			    display: block;
+			    width: 100%;
+			    padding: 0;
+			    list-style: none;
+			    text-align: center;
+			    li {
+					    position: relative;
+					    display: inline-block;
+					    width: 20px;
+					    height: 20px;
+					    margin: 0;
+					    padding: 0;
+					    cursor: pointer;
+					    button {
+							    display: block;
+							    width: 20px;
+							    height: 20px;
+							    padding: 5px;
+							    cursor: pointer;
+							    color: transparent;
+							    border: 0;
+							    outline: none;
+							    background: transparent;
+							    &:before {
+								    position: absolute;
+								    top: 5px;
+								    left: 5px;
+								    width: 10px;
+								    height: 10px;
+								    content: "";
+								    display: block;
+								    opacity: 0.7;
+								    background-color: $COLOR_WHITE;
+								    border-radius: 50%;
+								    transition: opacity $SHOW_DURATION/2 $SHOW_EASING;
+								}
+							}
+							&.slick-active {
+								button:before {
+									opacity: 1;
+								}
+							}
+					}
 			}
 
 		}

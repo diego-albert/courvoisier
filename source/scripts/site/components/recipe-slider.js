@@ -15,12 +15,17 @@ site.components.RecipeSliderComponent = el.core.utils.class.extend(function(opti
 
 	this.$el = this.options.$el;
 	this.$slider = this.$el.find('.slider-wrapper');
+	this.$moreInfoBtn = this.$slider.find('.more-info');
+
+	this._recipeInfoOpen = false;
 
 	this._register();
 
 	console.log('::init', this.name);
 
 	this.init();
+
+	this.$moreInfoBtn.on('click', $.proxy(this.toogleRecipeInfo, this) );
 
 }, site.components.BaseComponent);
 
@@ -35,7 +40,7 @@ site.components.RecipeSliderComponent.prototype.init = function() {
 	  speed: 300,
 	  prevArrow: '<button type="button" data-role="none" class="slick-prev black" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-arrow-left"></span></button>',
     nextArrow: '<button type="button" data-role="none" class="slick-next black" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-arrow-right"></span></button>',
-    dots: false
+    dots: true
 	});
 
 	// this.$slider.on('beforeChange', $.proxy(
@@ -43,10 +48,46 @@ site.components.RecipeSliderComponent.prototype.init = function() {
 	// 		this.animateSlideOut(currentSlide, nextSlide)
 	// 	}, this));
 
-	// this.$slider.on('afterChange', $.proxy(
-	// 	function(event, slick, currentSlide){
-	// 		this.animateSlideIn(currentSlide);
-	// }, this));
+	this.$slider.on('afterChange', $.proxy(this._closeAllRecipeInfo, this));
+
+}
+
+site.components.RecipeSliderComponent.prototype.toogleRecipeInfo = function(e) {
+	e.preventDefault();
+
+	if (this._recipeInfoOpen) {
+		this._closeRecipeInfo(e.target);
+	} else {
+		this._openRecipeInfo(e.target);
+	}
+
+}
+
+site.components.RecipeSliderComponent.prototype._closeAllRecipeInfo = function(e) {
+
+	this.$slider.find('.recipe-info').removeClass('open');
+	this.$slider.find('.more-info').addClass('down');
+
+	this._recipeInfoOpen = false;
+}
+
+site.components.RecipeSliderComponent.prototype._closeRecipeInfo = function(target) {
+
+	this._recipeInfoOpen = false;
+
+	$(target).addClass('down')
+					 .parent().removeClass('open');
+}
+
+site.components.RecipeSliderComponent.prototype._openRecipeInfo = function(target) {
+
+	this._recipeInfoOpen = true;
+
+	$(target).removeClass('down')
+					 .parent().addClass('open');
+}
+
+site.components.RecipeSliderComponent.prototype.resize = function() {
 
 }
 

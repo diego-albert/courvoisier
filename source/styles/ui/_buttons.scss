@@ -37,3 +37,30 @@ button {
 	}
 }
 
+.arrow-btn {
+	outline: none;
+	display: block;
+	width: 55px;
+	height: 28px;
+	background-image: url("#{$url_prefix}/assets/img/arrow.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+	transform: translateX(-50%);
+	transition: transform $HOVER_DURATION $SHOW_EASING, opacity $HOVER_DURATION $SHOW_EASING;
+	opacity: 0.7;
+	&.down {
+		transform: translateX(-50%) rotate(-180deg);
+	}
+	@include min-screen($BREAKPOINT_M){
+		&:hover {
+			cursor:pointer;
+			opacity: 0.9;
+		}
+
+	}
+}
+
