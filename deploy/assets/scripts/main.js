@@ -4182,9 +4182,18 @@ site.components.MapComponent = el.core.utils.class.extend(function(options){
 	this.$mapView = document.getElementById('map-canvas');
 	this.$slider = this.$el.find('.results');
 
+	this._init = false;
 	this.map = null;
 	this.defaultZoom = 15;
 	this.sliderMapSearch = false;
+	this.markers = new Array();
+
+	this.locations = [
+		['club one', 51.5101342, -0.1366865],
+		['club two', 51.5166016, -0.1066241],
+		['club three', 51.5127886, -0.0959259],
+		['club four', 51.5144705, -0.1098388]
+	];
 
 	this._register();
 
@@ -4197,12 +4206,6 @@ site.components.MapComponent = el.core.utils.class.extend(function(options){
 site.components.MapComponent.prototype.init = function() {
 
 	this.createMap();
-
-	// if (window.innerWidth < 960 ) {
-
-	// 	this.initSliderMapSearch();
-
-	// }
 
 }
 
@@ -4305,19 +4308,122 @@ site.components.MapComponent.prototype.createMap = function() {
 		    "elementType": "all",
 		    "stylers": [{ "visibility": "off" }]
 		  }
-  ])
+  ]);
 
 	this.map = new google.maps.Map(this.$mapView, {
-     center: new google.maps.LatLng(41.399364, 2.1961556),
+     center: new google.maps.LatLng(51.5101342, -0.1366865),
      zoom: that.defaultZoom,
      disableDefaultUI: true,
      scrollwheel: false,
      disableDoubleClickZoom: true
    });
 
-	that.map.mapTypes.set('styled_map', styledMapType);
-	that.map.setMapTypeId('styled_map');
+	// SET STYLES TO MAP
+	this.map.mapTypes.set('styled_map', styledMapType);
+	this.map.setMapTypeId('styled_map');
 
+	this.initSearchBar();
+
+	// WAIT FOR GOOGLE MAP CREATED TO DISPLAY MARKERS
+	google.maps.event.addListener( that.map, 'idle', $.proxy(this.displayLocationsMarker, this) );
+
+	google.maps.event.addListener( that.map, 'bounds_changed', $.proxy(this.checkMarkerVisibility, this));
+
+}
+
+site.components.MapComponent.prototype.initSearchBar = function() {
+
+	var that = this;
+
+	var input = document.getElementById('searchbox');
+  var searchBox = new google.maps.places.SearchBox(input);
+
+  var autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.bindTo('bounds', that.map);
+
+  autocomplete.addListener('place_changed', function() {
+    // infowindow.close();
+    // marker.setVisible(false);
+    var place = autocomplete.getPlace();
+    if (!place.geometry) return;
+
+    // If the place has a geometry, then present it on a map.
+    if (place.geometry.viewport) {
+      that.map.fitBounds(place.geometry.viewport);
+    } else {
+      that.map.setCenter(place.geometry.location);
+      that.map.setZoom(17);  // Why 17? Because it looks good.
+    }
+    return;
+    marker.setIcon(/** @type {google.maps.Icon} */({
+      url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(35, 35)
+    }));
+    marker.setPosition(place.geometry.location);
+    marker.setVisible(true);
+
+    var address = '';
+    if (place.address_components) {
+      address = [
+        (place.address_components[0] && place.address_components[0].short_name || ''),
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+
+    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    infowindow.open(map, marker);
+  });
+
+}
+
+site.components.MapComponent.prototype.displayLocationsMarker = function() {
+
+		if ( this._init ) return;
+
+		var that = this,
+				marker, i;
+
+		for (i = 0; i < that.locations.length; i++) {
+	    marker = new google.maps.Marker({
+	      position: new google.maps.LatLng(that.locations[i][1], that.locations[i][2]),
+	      map: that.map
+	    });
+
+	    that.markers.push(marker);
+
+	    // google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	    //   return function() {
+	    //     infowindow.setContent(locations[i][0]);
+	    //     infowindow.open(map, marker);
+	    //   }
+	    // })(marker, i));
+	  }
+
+	  this.checkMarkerVisibility();
+	  this._init = true;
+
+}
+
+site.components.MapComponent.prototype.checkMarkerVisibility = function() {
+
+		for (var i = 0; i < this.markers.length; i++) {
+
+			if ( this.map.getBounds().contains(this.markers[i].getPosition()) )
+	    {
+	    	// console.log('hide marker');
+	    		this.markers[i].setVisible(true);//to hide
+	    }
+	    else
+	    {
+	    	// console.log('show marker');
+	    		this.markers[i].setVisible(false);//to show
+	    }
+
+		};
 }
 
 site.components.MapComponent.prototype.destroySliderMapSearch = function() {
