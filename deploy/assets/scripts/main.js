@@ -4185,15 +4185,15 @@ site.components.MapComponent = el.core.utils.class.extend(function(options){
 	this._init = false;
 	this.map = null;
 	this.defaultZoom = 15;
+	this.initMapPos = [51.5101342, -0.1366865];
 	this.sliderMapSearch = false;
 	this.markers = new Array();
+	this.locations = new Array();
+	this.visibleMarkersId = new Array();
+	this.currentVisibleMarkersId = new Array();
 
-	this.locations = [
-		['club one', 51.5101342, -0.1366865],
-		['club two', 51.5166016, -0.1066241],
-		['club three', 51.5127886, -0.0959259],
-		['club four', 51.5144705, -0.1098388]
-	];
+	// Import locations from JSON file
+	this.loadLocations();
 
 	this._register();
 
@@ -4206,6 +4206,22 @@ site.components.MapComponent = el.core.utils.class.extend(function(options){
 site.components.MapComponent.prototype.init = function() {
 
 	this.createMap();
+
+}
+
+site.components.MapComponent.prototype.loadLocations = function() {
+		var that = this;
+
+		var oReq = new XMLHttpRequest();
+		oReq.onload = reqListener;
+		oReq.open("get", "./data/locations.json", true);
+		oReq.send();
+
+		function reqListener(e) {
+		  that.locations = JSON.parse(this.responseText);
+		  that.locations = that.locations.locations;
+		  // console.log('treeData: ', that.locations[0] );
+		}
 
 }
 
@@ -4311,7 +4327,7 @@ site.components.MapComponent.prototype.createMap = function() {
   ]);
 
 	this.map = new google.maps.Map(this.$mapView, {
-     center: new google.maps.LatLng(51.5101342, -0.1366865),
+     center: new google.maps.LatLng(this.initMapPos[0], this.initMapPos[1]),
      zoom: that.defaultZoom,
      disableDefaultUI: true,
      scrollwheel: false,
@@ -4388,9 +4404,11 @@ site.components.MapComponent.prototype.displayLocationsMarker = function() {
 				marker, i;
 
 		for (i = 0; i < that.locations.length; i++) {
+
 	    marker = new google.maps.Marker({
-	      position: new google.maps.LatLng(that.locations[i][1], that.locations[i][2]),
-	      map: that.map
+	      position: new google.maps.LatLng(that.locations[i].coordinates[0], that.locations[i].coordinates[1]),
+	      map: that.map,
+	      id: that.locations[i].id
 	    });
 
 	    that.markers.push(marker);
@@ -4410,20 +4428,30 @@ site.components.MapComponent.prototype.displayLocationsMarker = function() {
 
 site.components.MapComponent.prototype.checkMarkerVisibility = function() {
 
+		this.visibleMarkersId = [];
+
 		for (var i = 0; i < this.markers.length; i++) {
 
 			if ( this.map.getBounds().contains(this.markers[i].getPosition()) )
 	    {
-	    	// console.log('hide marker');
-	    		this.markers[i].setVisible(true);//to hide
+	    		this.markers[i].setVisible(true);//to show
+	    		// console.log('show_bar: ', this.markers[i].id );
+	    		this.visibleMarkersId.push(this.markers[i].id)
 	    }
 	    else
 	    {
-	    	// console.log('show marker');
-	    		this.markers[i].setVisible(false);//to show
+	    		this.markers[i].setVisible(false);//to hide
+	    		// console.log('show_bar: ', this.markers[i].id );
 	    }
 
 		};
+
+		var currentMarkersVisibleNotChanged = this.compareArraysMarker(this.visibleMarkersId, this.currentVisibleMarkersId);
+
+		this.currentVisibleMarkersId = this.visibleMarkersId;
+
+		if ( !currentMarkersVisibleNotChanged ) this.updatelocationList();
+
 }
 
 site.components.MapComponent.prototype.destroySliderMapSearch = function() {
@@ -4444,6 +4472,57 @@ site.components.MapComponent.prototype.initSliderMapSearch = function() {
     dots: false
 	});
 	this.sliderMapSearch = true;
+}
+
+site.components.MapComponent.prototype.compareArraysMarker = function(a1,a2) {
+
+		// if the other array is a falsy value, return
+    if (!a1 || !a2)
+        return false;
+
+    // compare lengths - can save a lot of time
+    if (a1.length != a2.length)
+        return false;
+
+    for (var i = 0, l=a1.length; i < l; i++) {
+
+        if (a1[i] != a2[i]) {
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;
+        }
+    }
+    return true;
+
+}
+
+site.components.MapComponent.prototype.updatelocationList = function() {
+
+		var that = this;
+		var output = [];
+
+
+			that.$slider.html("");
+
+		for (var i = 0; i < that.visibleMarkersId.length; i++) {
+
+			var location = '<div class="item item-'+that.locations[i].id+' ">';
+					location += '<p class="name main--subtitle">'+that.locations[i].name+'</p>';
+					location += '<p class="adress highlight-text small">Address';
+					location += '<span class="data-font">'+that.locations[i].address+'</span></p>';
+					location += '<p class="telephone highlight-text small">telephone';
+					location += '<span class="data-font">'+that.locations[i].telephone+'</span></p>';
+					location += '<p class="timetable highlight-text small">timetable';
+					location += '<span class="data-font">'+that.locations[i].timetable+'</span></p></div>';
+
+			// output.push(location);
+			that.$slider.append(location);
+
+		}
+
+		// console.log('that.$slider: ', that.$slider);
+
+		// that.$slider.innerHTML = output;
+
 }
 
 site.components.MapComponent.prototype.resize = function() {

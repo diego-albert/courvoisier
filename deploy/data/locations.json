@@ -1,0 +1,164 @@
+{
+		"locations" : [
+				{
+						"id" : "1",
+						"name" : "Club One",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5101342, -0.1366865]
+				},
+				{
+						"id" : "2",
+						"name" : "Club two",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5166016, -0.1066241]
+				},
+				{
+						"id" : "3",
+						"name" : "Club three",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5127886, -0.0959259]
+				},
+				{
+						"id" : "4",
+						"name" : "Club four",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5144705, -0.1098388]
+				},
+				{
+						"id" : "5",
+						"name" : "Club five",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5072844, -0.1292612]
+				},
+				{
+						"id" : "6",
+						"name" : "Club six",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.504453, -0.1141293]
+				},
+				{
+						"id" : "7",
+						"name" : "Club seven",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5148866, -0.1074237]
+				},
+				{
+						"id" : "8",
+						"name" : "Club eight",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5261066, -0.1073756]
+				},
+				{
+						"id" : "9",
+						"name" : "Club nine",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5265873, -0.084536]
+				},
+				{
+						"id" : "10",
+						"name" : "Club ten",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.529084, -0.0772462]
+				},
+				{
+						"id" : "11",
+						"name" : "Club eleven",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5172944, -0.081234]
+				},
+				{
+						"id" : "12",
+						"name" : "Club twelve",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5136747, -0.0715058]
+				},
+				{
+						"id" : "13",
+						"name" : "Club thirteen",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5102286, -0.0871268]
+				},
+				{
+						"id" : "14",
+						"name" : "Club fourteen",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5181163, -0.0865934]
+				},
+				{
+						"id" : "15",
+						"name" : "Club fiveteen",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5141489, -0.0770684]
+				},
+				{
+						"id" : "16",
+						"name" : "Club sixteen",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5129634, -0.0685594]
+				},
+				{
+						"id" : "17",
+						"name" : "Club seventeen",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5212608, -0.0768452]
+				},
+				{
+						"id" : "18",
+						"name" : "Club eighteen",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5211501, -0.0578968]
+				},
+				{
+						"id" : "19",
+						"name" : "Club nineteen",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5206444, -0.0713842]
+				},
+				{
+						"id" : "20",
+						"name" : "Club twenty",
+						"address" : "The London Pavilion, 1, Picadilly Circus",
+						"telephone" : "99 999 999 999",
+						"timetable" : "10:00 - 00:00",
+						"coordinates" : [51.5196803, -0.0750672]
+				}
+		]
+}
