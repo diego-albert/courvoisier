@@ -26,6 +26,12 @@ site.components.MapComponent = el.core.utils.class.extend(function(options){
 	this.locations = new Array();
 	this.visibleMarkersId = new Array();
 	this.currentVisibleMarkersId = new Array();
+	this.currentLocationSelected = 0;
+
+	this.markerImage = {
+		iddle: './assets/img/marker.png',
+		active: './assets/img/marker_active.png'
+	};
 
 	// Import locations from JSON file
 	this.loadLocations();
@@ -165,6 +171,7 @@ site.components.MapComponent.prototype.createMap = function() {
      center: new google.maps.LatLng(this.initMapPos[0], this.initMapPos[1]),
      zoom: that.defaultZoom,
      disableDefaultUI: true,
+     zoomControl: true,
      scrollwheel: false,
      disableDoubleClickZoom: true
    });
@@ -192,7 +199,8 @@ site.components.MapComponent.prototype.initSearchBar = function() {
   var autocomplete = new google.maps.places.Autocomplete(input);
       autocomplete.bindTo('bounds', that.map);
 
-  autocomplete.addListener('place_changed', function() {
+  autocomplete.addListener('place_changed', function(e) {
+  	// e.preventDefault();
     // infowindow.close();
     // marker.setVisible(false);
     var place = autocomplete.getPlace();
@@ -243,22 +251,55 @@ site.components.MapComponent.prototype.displayLocationsMarker = function() {
 	    marker = new google.maps.Marker({
 	      position: new google.maps.LatLng(that.locations[i].coordinates[0], that.locations[i].coordinates[1]),
 	      map: that.map,
-	      id: that.locations[i].id
+	      id: that.locations[i].id,
+	      icon: that.markerImage.iddle
 	    });
 
 	    that.markers.push(marker);
 
-	    // google.maps.event.addListener(marker, 'click', (function(marker, i) {
-	    //   return function() {
-	    //     infowindow.setContent(locations[i][0]);
-	    //     infowindow.open(map, marker);
-	    //   }
-	    // })(marker, i));
 	  }
+
+	  // Add Click event on marker
+	  for (var i = 0; i < that.markers.length; i++) {
+
+			that.markers[i].addListener('click', function(){
+				that.setHighLightMarker(this)
+			});
+
+		};
 
 	  this.checkMarkerVisibility();
 	  this._init = true;
 
+}
+
+site.components.MapComponent.prototype.setHighLightMarker = function(target) {
+
+	// Set Default icon to all markers
+	for (var i = 0; i < this.markers.length; i++) {
+			this.markers[i].setIcon(this.markerImage.iddle);
+	};
+
+	target.setIcon(this.markerImage.active);
+	// this.map.setCenter( target.getPosition() );
+
+	this.highLightListitem(target['id']);
+
+}
+
+site.components.MapComponent.prototype.highLightListitem = function(targetId) {
+
+		for (var i = 0; i < this.locations.length; i++) {
+				this.locations[i].classname = "";
+		};
+
+		console.log('items: ', '.item-'+targetId, '.item-'+this.currentLocationSelected )
+
+		this.$slider.find( '.item-'+targetId ).addClass('highlight');
+		this.$slider.find( '.item-'+this.currentLocationSelected ).removeClass('highlight');
+		this.locations[targetId-1].classname = "highlight";
+
+		this.currentLocationSelected = targetId;
 }
 
 site.components.MapComponent.prototype.checkMarkerVisibility = function() {
@@ -270,13 +311,12 @@ site.components.MapComponent.prototype.checkMarkerVisibility = function() {
 			if ( this.map.getBounds().contains(this.markers[i].getPosition()) )
 	    {
 	    		this.markers[i].setVisible(true);//to show
-	    		// console.log('show_bar: ', this.markers[i].id );
 	    		this.visibleMarkersId.push(this.markers[i].id)
 	    }
 	    else
 	    {
 	    		this.markers[i].setVisible(false);//to hide
-	    		// console.log('show_bar: ', this.markers[i].id );
+	    		this.markers[i].setIcon(this.markerImage.iddle);
 	    }
 
 		};
@@ -335,19 +375,21 @@ site.components.MapComponent.prototype.updatelocationList = function() {
 		var that = this;
 		var output = [];
 
-
-			that.$slider.html("");
+		that.$slider.html("");
 
 		for (var i = 0; i < that.visibleMarkersId.length; i++) {
 
-			var location = '<div class="item item-'+that.locations[i].id+' ">';
-					location += '<p class="name main--subtitle">'+that.locations[i].name+'</p>';
+			// console.log(that.visibleMarkersId[i], that.locations[i].id);
+			var index = that.visibleMarkersId[i]-1;
+
+			var location = '<div class="item item-'+that.locations[index].id+' '+that.locations[index].classname+' ">';
+					location += '<p class="name main--subtitle">'+that.locations[index].name+'</p>';
 					location += '<p class="adress highlight-text small">Address';
-					location += '<span class="data-font">'+that.locations[i].address+'</span></p>';
+					location += '<span class="data-font">'+that.locations[index].address+'</span></p>';
 					location += '<p class="telephone highlight-text small">telephone';
-					location += '<span class="data-font">'+that.locations[i].telephone+'</span></p>';
+					location += '<span class="data-font">'+that.locations[index].telephone+'</span></p>';
 					location += '<p class="timetable highlight-text small">timetable';
-					location += '<span class="data-font">'+that.locations[i].timetable+'</span></p></div>';
+					location += '<span class="data-font">'+that.locations[index].timetable+'</span></p></div>';
 
 			// output.push(location);
 			that.$slider.append(location);

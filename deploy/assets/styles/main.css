@@ -52,8 +52,7 @@
 .slick-slider {
   position: relative;
   display: block;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -320,8 +319,7 @@ body {
   padding: 0; }
 
 *, button {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  box-sizing: border-box; }
 
 ul {
   list-style: none; }
@@ -592,14 +590,15 @@ br.xs-small {
       .courvoisier-0917 .map-component .results-container {
         width: 350px;
         height: 100%;
-        padding: 50px 65px 0 50px;
+        padding: 50px 0 0;
         top: 0;
         bottom: auto;
         left: 0; } }
     .courvoisier-0917 .map-component .results-container .hide-scroll {
+      position: relative;
       width: 100%;
       height: 100%;
-      overflow-y: hidden; }
+      overflow: hidden; }
     .courvoisier-0917 .map-component .results-container .content {
       width: 100%;
       height: 100%;
@@ -608,10 +607,10 @@ br.xs-small {
         .courvoisier-0917 .map-component .results-container .content {
           text-align: left;
           overflow-y: auto;
-          width: calc(100% + 20px);
-          padding-right: 20px; } }
+          width: calc(100% + 20px); } }
       .courvoisier-0917 .map-component .results-container .content .recipe-header {
-        color: #9e7625; }
+        color: #9e7625;
+        padding: 0 65px 0 50px; }
         .courvoisier-0917 .map-component .results-container .content .recipe-header:after {
           display: block;
           content: "";
@@ -627,8 +626,16 @@ br.xs-small {
             margin-bottom: 35px; }
             .courvoisier-0917 .map-component .results-container .content .recipe-header:after {
               display: none; } }
+      @media screen and (min-width: 960px) {
+        .courvoisier-0917 .map-component .results-container .content .results {
+          position: relative;
+          width: 100%;
+          max-width: 350px; } }
       .courvoisier-0917 .map-component .results-container .content .item {
-        color: #2e2e2e; }
+        color: #2e2e2e;
+        padding: 0 65px 0 50px;
+        -webkit-transition: background 0.5s ease-in-out;
+        transition: background 0.5s ease-in-out; }
         .courvoisier-0917 .map-component .results-container .content .item p {
           margin-bottom: 10px; }
           .courvoisier-0917 .map-component .results-container .content .item p span {
@@ -647,6 +654,9 @@ br.xs-small {
             padding-bottom: 25px; }
             .courvoisier-0917 .map-component .results-container .content .item:last-child:after {
               display: none; } }
+        .courvoisier-0917 .map-component .results-container .content .item.highlight {
+          background-color: #cb9d3b;
+          background-color: rgba(203, 157, 59, 0.1); }
       .courvoisier-0917 .map-component .results-container .content .slick-arrow {
         position: absolute;
         z-index: 2;
