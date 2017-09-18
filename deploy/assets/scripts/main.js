@@ -4448,23 +4448,42 @@ site.components.MapComponent.prototype.setHighLightMarker = function(target) {
 	target.setIcon(this.markerImage.active);
 	// this.map.setCenter( target.getPosition() );
 
-	this.highLightListitem(target['id']);
+	this.highLightListItem(target['id']);
 
 }
 
-site.components.MapComponent.prototype.highLightListitem = function(targetId) {
+site.components.MapComponent.prototype.highLightListItem = function(targetId) {
 
-		for (var i = 0; i < this.locations.length; i++) {
-				this.locations[i].classname = "";
-		};
+		if ( this.currentLocationSelected != targetId ) {
 
-		console.log('items: ', '.item-'+targetId, '.item-'+this.currentLocationSelected )
+			// Reset all list item styles
+			for (var i = 0; i < this.locations.length; i++) {
+					this.locations[i].classname = "";
+			};
 
-		this.$slider.find( '.item-'+targetId ).addClass('highlight');
-		this.$slider.find( '.item-'+this.currentLocationSelected ).removeClass('highlight');
-		this.locations[targetId-1].classname = "highlight";
+			// highlight element
+			this.$slider.find( '.item-'+targetId ).addClass('highlight');
+			this.$slider.find( '.item-'+this.currentLocationSelected ).removeClass('highlight');
+			this.locations[targetId-1].classname = "highlight";
 
-		this.currentLocationSelected = targetId;
+			// Save current location selected
+			this.currentLocationSelected = targetId;
+
+			if (window.innerWidth < 960 && this.sliderMapSearch) {
+
+				var currentIndex = ( this.$slider.find('.highlight').last().data('slick-index') ) ? this.$slider.find('.highlight').data('slick-index') : 0;
+				console.log('index: ', currentIndex );
+				this.$slider.slick('slickGoTo', currentIndex );
+
+			}
+
+		}
+
+		// Animate scroll Pos to highlight elem
+		var cont = this.$el.find( '.results').offset().top;
+		var offset = this.$slider.find( '.item-'+targetId ).offset().top;
+		this.$el.find('.content').animate({scrollTop: offset-cont },300);
+
 }
 
 site.components.MapComponent.prototype.checkMarkerVisibility = function() {
@@ -4482,6 +4501,7 @@ site.components.MapComponent.prototype.checkMarkerVisibility = function() {
 	    {
 	    		this.markers[i].setVisible(false);//to hide
 	    		this.markers[i].setIcon(this.markerImage.iddle);
+	    		this.locations[i].classname = ""; // Remove highlight class from listItem
 	    }
 
 		};
@@ -4495,8 +4515,13 @@ site.components.MapComponent.prototype.checkMarkerVisibility = function() {
 }
 
 site.components.MapComponent.prototype.destroySliderMapSearch = function() {
-	this.$slider.slick('unslick');
-	this.sliderMapSearch = false;
+
+	if (this.sliderMapSearch) {
+		// IF SLICK IS INIT
+		this.$slider.slick('unslick');
+		this.sliderMapSearch = false;
+	}
+
 }
 
 site.components.MapComponent.prototype.initSliderMapSearch = function() {
@@ -4506,12 +4531,29 @@ site.components.MapComponent.prototype.initSliderMapSearch = function() {
 	  slidesToScroll: 1,
 	  arrows: true,
 	  autoplay: false,
-	  speed: 300,
+	  speed: 100,
 	  prevArrow: '<button type="button" data-role="none" class="slick-prev black" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-arrow-left"></span></button>',
     nextArrow: '<button type="button" data-role="none" class="slick-next black" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-arrow-right"></span></button>',
-    dots: false
+    dots: false,
+    waitForAnimate: false
 	});
 	this.sliderMapSearch = true;
+
+	this.$slider.on('afterChange', $.proxy(
+  	function(event, slick, currentSlide){
+
+  		// Save current location selected
+			this.currentLocationSelected = this.$slider.find('.slick-current').data('location') ;
+
+			// console.log('new slide: ', this.currentLocationSelected, this.markers[this.currentLocationSelected] );
+
+			for (var i = 0; i < this.markers.length; i++) {
+					this.markers[i].setIcon(this.markerImage.iddle);
+			};
+
+			this.markers[this.currentLocationSelected-1].setIcon(this.markerImage.active);
+
+	}, this));
 }
 
 site.components.MapComponent.prototype.compareArraysMarker = function(a1,a2) {
@@ -4540,14 +4582,16 @@ site.components.MapComponent.prototype.updatelocationList = function() {
 		var that = this;
 		var output = [];
 
+		// RESET ITEM LIST
+		this.destroySliderMapSearch();
 		that.$slider.html("");
 
 		for (var i = 0; i < that.visibleMarkersId.length; i++) {
 
-			// console.log(that.visibleMarkersId[i], that.locations[i].id);
+			// CREATE ITEM LIST FOR EACH MARKER VISIBLE ON MAP
 			var index = that.visibleMarkersId[i]-1;
 
-			var location = '<div class="item item-'+that.locations[index].id+' '+that.locations[index].classname+' ">';
+			var location = '<div class="item item-'+that.locations[index].id+' '+that.locations[index].classname+' " data-location="'+that.locations[index].id+'">';
 					location += '<p class="name main--subtitle">'+that.locations[index].name+'</p>';
 					location += '<p class="adress highlight-text small">Address';
 					location += '<span class="data-font">'+that.locations[index].address+'</span></p>';
@@ -4561,18 +4605,28 @@ site.components.MapComponent.prototype.updatelocationList = function() {
 
 		}
 
-		// console.log('that.$slider: ', that.$slider);
+		if (window.innerWidth < 960 && !this.sliderMapSearch && this.locations.length > 1) {
 
-		// that.$slider.innerHTML = output;
+			this.initSliderMapSearch();
+
+			var currentIndex = ( this.$slider.find('.highlight').last().data('slick-index') ) ? this.$slider.find('.highlight').data('slick-index') : 0;
+			console.log('index: ', currentIndex );
+			this.$slider.slick('slickGoTo', currentIndex );
+
+		}
 
 }
 
 site.components.MapComponent.prototype.resize = function() {
 
-	if (window.innerWidth < 960 && !this.sliderMapSearch ) {
+	if (window.innerWidth < 960 && !this.sliderMapSearch && this.locations.length > 1) {
+
 		this.initSliderMapSearch();
+
 	} else if ( window.innerWidth >= 960 && this.sliderMapSearch ){
+
 		this.destroySliderMapSearch();
+
 	}
 
 }
