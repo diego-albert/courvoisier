@@ -119,6 +119,17 @@
 		"oAP": "\/deploy\/assets\/fonts\/Lora-Regular.woff2",
 		"oF": 0
 		},
+	"\/deploy\/assets\/img\/arrow.png": {
+		"ft": 32768,
+		"iS": 1295,
+		"oA": 0,
+		"oAP": "\/deploy\/assets\/img\/arrow.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"\/deploy\/assets\/img\/gold-line-separator.png": {
 		"ft": 32768,
 		"iS": 1127,
@@ -127,6 +138,28 @@
 		"oF": 0,
 		"oIPL": 1,
 		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
+	"\/deploy\/assets\/img\/marker.png": {
+		"ft": 32768,
+		"iS": 27604,
+		"oA": 0,
+		"oAP": "\/deploy\/assets\/img\/marker.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"\/deploy\/assets\/img\/marker_active.png": {
+		"ft": 32768,
+		"iS": 2549,
+		"oA": 0,
+		"oAP": "\/deploy\/assets\/img\/marker_active.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
 		"oT": 1,
 		"q": 100
 		},
@@ -150,10 +183,24 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"\/deploy\/data\/locations.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/deploy\/data\/locations-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
 	"\/deploy\/index.html": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/deploy\/index.html",
+		"oF": 0
+		},
+	"\/README.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/README.html",
 		"oF": 0
 		},
 	"\/README.md": {
@@ -374,6 +421,16 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"\/source\/scripts\/libs\/slick.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "\/source\/deploy\/assets\/scripts\/slick.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"\/source\/scripts\/libs\/velocity.js": {
 		"ft": 64,
 		"ma": 0,
@@ -400,6 +457,26 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "\/source\/scripts\/deploy\/assets\/scripts\/base-component.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/source\/scripts\/site\/components\/map-component.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "\/source\/scripts\/deploy\/assets\/scripts\/map-component.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/source\/scripts\/site\/components\/recipe-slider.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "\/source\/scripts\/deploy\/assets\/scripts\/recipe-slider.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0
@@ -1105,6 +1182,32 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/source\/styles\/components\/_map-comp.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/source\/deploy\/assets\/styles\/_map-comp.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/source\/styles\/components\/_recipe-slider.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/source\/deploy\/assets\/styles\/_recipe-slider.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/source\/styles\/core\/_constants.scss": {
 		"aP": 1,
 		"bl": 0,
@@ -1190,7 +1293,7 @@
 		"dS": 0,
 		"ft": 4,
 		"ma": 0,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/source\/deploy\/assets\/styles\/slick.css",
 		"oF": 0,
 		"oS": 0,
