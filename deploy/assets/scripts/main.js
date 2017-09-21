@@ -4068,6 +4068,58 @@ var site = site || {};
 
 el.core.utils.createNamespace(site, 'components')
 
+site.components.MarqueeComponent = el.core.utils.class.extend(function(options){
+
+	this.options = {
+
+	};
+
+	$.extend(this.options, options);
+
+	this.name = 'MarqueeComponent';
+	this.id = el.core.utils.uniqueId.get(this.name + '-');
+
+	this.$el = this.options.$el;
+
+	this._register();
+
+	console.log('::init', this.name);
+
+	this.init();
+
+}, site.components.BaseComponent);
+
+site.components.MarqueeComponent.prototype.init = function() {
+
+	this.$el.slick({
+	  infinite: true,
+	  slidesToShow: 1,
+	  slidesToScroll: 1,
+	  arrows: true,
+	  autoplay: true,
+	  autoplaySpeed: 8000,
+	  speed: 600,
+	  prevArrow: '<button type="button" data-role="none" class="general-arrow slick-prev" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-base_arrow"></span></button>',
+    nextArrow: '<button type="button" data-role="none" class="general-arrow slick-next" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-base_arrow"></span></button>',
+    dots: true
+	});
+
+}
+
+site.components.MarqueeComponent.prototype.resize = function() {
+
+}
+
+site.components.MarqueeComponent.prototype.destroy = function() {
+
+	this.parent.destroy.call(this);
+
+}
+
+var site = site || {};
+
+el.core.utils.createNamespace(site, 'components')
+
 site.components.RecipeSliderComponent = el.core.utils.class.extend(function(options){
 
 	this.options = {
@@ -4098,21 +4150,17 @@ site.components.RecipeSliderComponent = el.core.utils.class.extend(function(opti
 site.components.RecipeSliderComponent.prototype.init = function() {
 
 	this.$slider.slick({
-	  infinite: false,
+	  infinite: true,
 	  slidesToShow: 1,
 	  slidesToScroll: 1,
-	  arrows: false,
-	  autoplay: false,
-	  speed: 300,
-	  prevArrow: '<button type="button" data-role="none" class="slick-prev black" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-arrow-left"></span></button>',
-    nextArrow: '<button type="button" data-role="none" class="slick-next black" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-arrow-right"></span></button>',
+	  arrows: true,
+	  autoplay: true,
+	  autoplaySpeed: 8000,
+	  speed: 600,
+	  prevArrow: '<button type="button" data-role="none" class="general-arrow slick-prev" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-base_arrow"></span></button>',
+    nextArrow: '<button type="button" data-role="none" class="general-arrow slick-next" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-base_arrow"></span></button>',
     dots: true
 	});
-
-	// this.$slider.on('beforeChange', $.proxy(
- //  	function(event, slick, currentSlide, nextSlide){
-	// 		this.animateSlideOut(currentSlide, nextSlide)
-	// 	}, this));
 
 	this.$slider.on('afterChange', $.proxy(this._closeAllRecipeInfo, this));
 
@@ -4341,6 +4389,8 @@ site.components.MapComponent.prototype.createMap = function() {
      disableDoubleClickZoom: true
    });
 
+	this.resize();
+
 	// SET STYLES TO MAP
 	this.map.mapTypes.set('styled_map', styledMapType);
 	this.map.setMapTypeId('styled_map');
@@ -4532,8 +4582,8 @@ site.components.MapComponent.prototype.initSliderMapSearch = function() {
 	  arrows: true,
 	  autoplay: false,
 	  speed: 100,
-	  prevArrow: '<button type="button" data-role="none" class="slick-prev black" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-arrow-left"></span></button>',
-    nextArrow: '<button type="button" data-role="none" class="slick-next black" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-arrow-right"></span></button>',
+	  prevArrow: '<button type="button" data-role="none" class="slick-prev map-arrow" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-arrow_slide_2"></span></button>',
+    nextArrow: '<button type="button" data-role="none" class="slick-next map-arrow" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-arrow_slide_2"></span></button>',
     dots: false,
     waitForAnimate: false
 	});
@@ -4584,7 +4634,7 @@ site.components.MapComponent.prototype.updatelocationList = function() {
 
 		// RESET ITEM LIST
 		this.destroySliderMapSearch();
-		that.$slider.html("");
+		this.$slider.html("");
 
 		for (var i = 0; i < that.visibleMarkersId.length; i++) {
 
@@ -4613,7 +4663,30 @@ site.components.MapComponent.prototype.updatelocationList = function() {
 			console.log('index: ', currentIndex );
 			this.$slider.slick('slickGoTo', currentIndex );
 
+		} else {
+
+				this.$slider.find('.item').on('click', $.proxy( this.activeListItem, this ));
+
 		}
+
+}
+
+site.components.MapComponent.prototype.activeListItem = function(ev) {
+
+		var location = ev.currentTarget.getAttribute('data-location');
+		this.highLightListItem(location);
+		this.setMarkerActive(location);
+}
+
+site.components.MapComponent.prototype.setMarkerActive = function(location) {
+
+	for (var i = 0; i < this.markers.length; i++) {
+
+			this.markers[i].setIcon(this.markerImage.iddle);
+
+	};
+
+	this.markers[location-1].setIcon(this.markerImage.active);
 
 }
 
@@ -4621,11 +4694,16 @@ site.components.MapComponent.prototype.resize = function() {
 
 	if (window.innerWidth < 960 && !this.sliderMapSearch && this.locations.length > 1) {
 
+		this.$slider.find('.item').off('click');
 		this.initSliderMapSearch();
+
+		this.map.zoomControl = false;
 
 	} else if ( window.innerWidth >= 960 && this.sliderMapSearch ){
 
 		this.destroySliderMapSearch();
+
+		this.map.zoomControl = true;
 
 	}
 
@@ -4865,6 +4943,7 @@ el.core.utils.createNamespace(site, 'managers').componentsManager = (function() 
 // @codekit-prepend "core/managers/layout-manager.js"
 
 // @codekit-prepend "site/components/base-component.js"
+// @codekit-prepend "site/components/marquee-component.js"
 // @codekit-prepend "site/components/recipe-slider.js"
 // @codekit-prepend "site/components/map-component.js"
 

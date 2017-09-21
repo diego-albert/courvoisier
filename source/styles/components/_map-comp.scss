@@ -9,6 +9,18 @@
 			width: 100%;
 			height: 42px;
 			background-color: white;
+			.search-icon {
+				position: absolute;
+				font-size: 24px;
+				top: 9px;
+				left: 9px;
+				color: $COLOR_SOFT_GREY;
+				@include min-screen($BREAKPOINT_S) {
+					font-size: 45px;
+					top: 15px;
+					left: 32px;
+				}
+			}
 			input {
 				width: 100%;
 				height: 42px;
@@ -16,6 +28,7 @@
 				border-radius: 0;
 				padding: 15px 0;
 				padding-left: 48px;
+
 			}
 			@include min-screen($BREAKPOINT_S) {
 				height: 77px;
@@ -39,12 +52,13 @@
 			width: 100%;
 			height: 210px;
   		background-color: rgba(255, 255, 255, 0.95);
-  		bottom: 80px;
+  		bottom: 0;
 			left: 0;
-			padding: 15px;
+			padding: 15px 0;
 			z-index: 1;
 			@include min-screen($BREAKPOINT_S) {
 				height: 250px;
+				padding: 15px;
 			}
 			@include min-screen($BREAKPOINT_M) {
 				width: 350px;
@@ -75,7 +89,7 @@
 				}
 				.recipe-header {
 					color: $COLOR_GOLD_DARK;
-					padding: 0 65px 0 50px;
+					padding: 0;
 					&:after {
 						display: block;
 						content: "";
@@ -87,6 +101,9 @@
 						margin: 15px 0 10px;
 						margin-left: -40px;
 					}
+					@include min-screen($BREAKPOINT_S) {
+						padding: 0 65px 0 50px;
+					}
 					@include min-screen($BREAKPOINT_M) {
 						margin-bottom: 35px;
 						&:after {
@@ -95,6 +112,7 @@
 					}
 				}
 				.results {
+					width: 100%;
 					@include min-screen($BREAKPOINT_M) {
 						position: relative;
 						width: 100%;
@@ -109,6 +127,32 @@
 						margin-bottom: 10px;
 						span {
 							display: block;
+						}
+					}
+					.name {
+					    display: inline-block;
+					    padding-left: 30px;
+  						position: relative;
+						&:before {
+							content: "";
+							display: block;
+							position: absolute;
+							top: 2px;
+							left: 0;
+							width: 22px;
+							height: 22px;
+							background-image: url("#{$url_prefix}/assets/img/bar-icon.png");
+							background-size: contain;
+							background-position: center;
+							background-repeat: no-repeat;
+						}
+						@include min-screen($BREAKPOINT_S) {
+							padding-left: 35px;
+							&:before {
+								width: 25px;
+								height: 25px;
+								top: 3px;
+							}
 						}
 					}
 					@include min-screen($BREAKPOINT_M) {
@@ -133,15 +177,30 @@
 						}
 					}
 				}
-				.slick-arrow {
+
+				.map-arrow {
 					position: absolute;
+					top: 25%;
+					padding: 5px;
+					padding-top: 7px;
 					z-index: 2;
-					top: 50%;
-					margin-top: -34px;
-					left: 0;
+					font-size: 42px;
+					color: $COLOR_GOLD;
 					&.slick-next {
-						right: 0;
-						left: auto;
+						right: 0px;
+					}
+					&.slick-prev {
+						left: 0px;
+						transform: rotate(180deg);
+					}
+					@include min-screen($BREAKPOINT_S) {
+						font-size: 58px;
+						&.slick-next {
+							right: 5%;
+						}
+						&.slick-prev {
+							left: 5%;
+						}
 					}
 				}
 			}

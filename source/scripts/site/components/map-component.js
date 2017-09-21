@@ -176,6 +176,8 @@ site.components.MapComponent.prototype.createMap = function() {
      disableDoubleClickZoom: true
    });
 
+	this.resize();
+
 	// SET STYLES TO MAP
 	this.map.mapTypes.set('styled_map', styledMapType);
 	this.map.setMapTypeId('styled_map');
@@ -367,8 +369,8 @@ site.components.MapComponent.prototype.initSliderMapSearch = function() {
 	  arrows: true,
 	  autoplay: false,
 	  speed: 100,
-	  prevArrow: '<button type="button" data-role="none" class="slick-prev black" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-arrow-left"></span></button>',
-    nextArrow: '<button type="button" data-role="none" class="slick-next black" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-arrow-right"></span></button>',
+	  prevArrow: '<button type="button" data-role="none" class="slick-prev map-arrow" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-arrow_slide_2"></span></button>',
+    nextArrow: '<button type="button" data-role="none" class="slick-next map-arrow" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-arrow_slide_2"></span></button>',
     dots: false,
     waitForAnimate: false
 	});
@@ -419,7 +421,7 @@ site.components.MapComponent.prototype.updatelocationList = function() {
 
 		// RESET ITEM LIST
 		this.destroySliderMapSearch();
-		that.$slider.html("");
+		this.$slider.html("");
 
 		for (var i = 0; i < that.visibleMarkersId.length; i++) {
 
@@ -448,7 +450,30 @@ site.components.MapComponent.prototype.updatelocationList = function() {
 			console.log('index: ', currentIndex );
 			this.$slider.slick('slickGoTo', currentIndex );
 
+		} else {
+
+				this.$slider.find('.item').on('click', $.proxy( this.activeListItem, this ));
+
 		}
+
+}
+
+site.components.MapComponent.prototype.activeListItem = function(ev) {
+
+		var location = ev.currentTarget.getAttribute('data-location');
+		this.highLightListItem(location);
+		this.setMarkerActive(location);
+}
+
+site.components.MapComponent.prototype.setMarkerActive = function(location) {
+
+	for (var i = 0; i < this.markers.length; i++) {
+
+			this.markers[i].setIcon(this.markerImage.iddle);
+
+	};
+
+	this.markers[location-1].setIcon(this.markerImage.active);
 
 }
 
@@ -456,11 +481,16 @@ site.components.MapComponent.prototype.resize = function() {
 
 	if (window.innerWidth < 960 && !this.sliderMapSearch && this.locations.length > 1) {
 
+		this.$slider.find('.item').off('click');
 		this.initSliderMapSearch();
+
+		this.map.zoomControl = false;
 
 	} else if ( window.innerWidth >= 960 && this.sliderMapSearch ){
 
 		this.destroySliderMapSearch();
+
+		this.map.zoomControl = true;
 
 	}
 

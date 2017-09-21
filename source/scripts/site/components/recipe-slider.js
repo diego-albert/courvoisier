@@ -32,21 +32,17 @@ site.components.RecipeSliderComponent = el.core.utils.class.extend(function(opti
 site.components.RecipeSliderComponent.prototype.init = function() {
 
 	this.$slider.slick({
-	  infinite: false,
+	  infinite: true,
 	  slidesToShow: 1,
 	  slidesToScroll: 1,
-	  arrows: false,
-	  autoplay: false,
-	  speed: 300,
-	  prevArrow: '<button type="button" data-role="none" class="slick-prev black" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-arrow-left"></span></button>',
-    nextArrow: '<button type="button" data-role="none" class="slick-next black" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-arrow-right"></span></button>',
+	  arrows: true,
+	  autoplay: true,
+	  autoplaySpeed: 8000,
+	  speed: 600,
+	  prevArrow: '<button type="button" data-role="none" class="general-arrow slick-prev" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-base_arrow"></span></button>',
+    nextArrow: '<button type="button" data-role="none" class="general-arrow slick-next" aria-label="Next" tabindex="0" role="button"><span class="arrow icon-base_arrow"></span></button>',
     dots: true
 	});
-
-	// this.$slider.on('beforeChange', $.proxy(
- //  	function(event, slick, currentSlide, nextSlide){
-	// 		this.animateSlideOut(currentSlide, nextSlide)
-	// 	}, this));
 
 	this.$slider.on('afterChange', $.proxy(this._closeAllRecipeInfo, this));
 

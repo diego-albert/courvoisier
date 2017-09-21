@@ -16,6 +16,7 @@
 // @codekit-prepend "core/managers/layout-manager.js"
 
 // @codekit-prepend "site/components/base-component.js"
+// @codekit-prepend "site/components/marquee-component.js"
 // @codekit-prepend "site/components/recipe-slider.js"
 // @codekit-prepend "site/components/map-component.js"
 

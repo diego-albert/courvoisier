@@ -129,18 +129,6 @@
 				}
 			}
 
-			.slick-arrow {
-				position: absolute;
-				z-index: 2;
-				top: 50%;
-				margin-top: -34px;
-				left: 0;
-				&.slick-next {
-					right: 0;
-					left: auto;
-				}
-			}
-
 			.slick-dots {
 			    position: absolute;
 			    bottom: 3px;

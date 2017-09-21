@@ -61,7 +61,7 @@ p {
       content: "";
       display: block;
       position: absolute;
-      bottom: 0;
+      bottom: -3px;
       left: -5%;
       width: 110%;
       height: 0;
@@ -70,8 +70,70 @@ p {
       z-index: 10;
     }
   }
-}
 
+  .continue-scroll {
+    position: absolute;
+    z-index: 99;
+    padding: 2px;
+    text-align: center;
+    text-shadow: 1px 1px 2px #333;
+    left: 50%;
+    width: 80px;
+    margin-left: -40px;
+    bottom: 10px;
+
+    p.scroll-label {
+      color: #f4f4f4;
+      position: relative;
+      font-size: 20px;
+      @extend %lora-italic-font;
+
+      top: -45px;
+      padding: 5px 0px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      p.scroll-label {
+        color: #fff;
+        text-shadow: 0px 0px 15px #bd9749;
+      }
+    }
+
+    .arrows {
+        width: 30px;
+        height: 40px;
+        position: absolute;
+        left: 50%;
+        margin-left: -15px;
+        bottom: 0;
+
+        path {
+            stroke: #bd9749;
+            fill: transparent;
+            stroke-width: 1.5px;
+            animation: arrow 2s infinite;
+            &.a1 {
+              animation-delay: -1s;
+            }
+            &.a2 {
+              animation-delay: -0.5s;
+            }
+        }
+    }
+
+  }
+
+  @keyframes arrow {
+
+    0% { opacity: 0; }
+    40% { opacity: 1; }
+    80% { opacity: 0; }
+    100% { opacity: 0; }
+
+  }
+
+}
 
 
 // line breaks
@@ -102,7 +164,34 @@ br.xs-small {
   }
 }
 
+.general-arrow {
+    position: absolute;
+    z-index: 9;
+    top: 50%;
+    margin-top: -40px;
+    display: none!important;
 
+    &.slick-prev {
+      left: 10px;
+      transform: rotate(180deg);
+    }
+    &.slick-next {
+      right: 10px;
+    }
+
+    .arrow {
+      font-size: 80px;
+      color: $COLOR_WHITE;
+      opacity: 0.75;
+      transition: opacity $HOVER_DURATION $SHOW_EASING;
+      &:hover {
+        opacity: 0.95;
+      }
+    }
+    @include min-screen($BREAKPOINT_M) {
+      display: block!important;
+    }
+}
 
 
 

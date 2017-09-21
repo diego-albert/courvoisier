@@ -155,7 +155,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.main--header {
+.main--header, .courvoisier-0917 .continue-scroll p.scroll-label {
   font-family: 'Lora_italic', 'Lora_regular', Times;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
@@ -164,6 +164,32 @@
   font-family: 'engravers_gothicregular', Helvetica, Times;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+
+@font-face {
+  font-family: 'icomoon';
+  src: url("http://local.courvoisier.com/assets/fonts/icomoon.eot?3mpt18");
+  src: url("http://local.courvoisier.com/assets/fonts/icomoon.eot?3mpt18#iefix") format("embedded-opentype"), url("http://local.courvoisier.com/assets/fonts/icomoon.ttf?3mpt18") format("truetype"), url("http://local.courvoisier.com/assets/fonts/icomoon.woff?3mpt18") format("woff"), url("http://local.courvoisier.com/assets/fonts/icomoon.svg?3mpt18#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-arrow_slide_2:before {
+  content: "\e900"; }
+
+.icon-base_arrow:before {
+  content: "\e90e"; }
 
 .main--header {
   font-size: 42px;
@@ -370,7 +396,7 @@ p {
       content: "";
       display: block;
       position: absolute;
-      bottom: 0;
+      bottom: -3px;
       left: -5%;
       width: 110%;
       height: 0;
@@ -378,6 +404,66 @@ p {
       -o-border-image: url("http://local.courvoisier.com/assets//img/gold-line-separator.png") 100% 0 stretch;
          border-image: url("http://local.courvoisier.com/assets//img/gold-line-separator.png") 100% 0 stretch;
       z-index: 10; }
+  .courvoisier-0917 .continue-scroll {
+    position: absolute;
+    z-index: 99;
+    padding: 2px;
+    text-align: center;
+    text-shadow: 1px 1px 2px #333;
+    left: 50%;
+    width: 80px;
+    margin-left: -40px;
+    bottom: 10px; }
+    .courvoisier-0917 .continue-scroll p.scroll-label {
+      color: #f4f4f4;
+      position: relative;
+      font-size: 20px;
+      top: -45px;
+      padding: 5px 0px; }
+    .courvoisier-0917 .continue-scroll:hover {
+      cursor: pointer; }
+      .courvoisier-0917 .continue-scroll:hover p.scroll-label {
+        color: #fff;
+        text-shadow: 0px 0px 15px #bd9749; }
+    .courvoisier-0917 .continue-scroll .arrows {
+      width: 30px;
+      height: 40px;
+      position: absolute;
+      left: 50%;
+      margin-left: -15px;
+      bottom: 0; }
+      .courvoisier-0917 .continue-scroll .arrows path {
+        stroke: #bd9749;
+        fill: transparent;
+        stroke-width: 1.5px;
+        -webkit-animation: arrow 2s infinite;
+                animation: arrow 2s infinite; }
+        .courvoisier-0917 .continue-scroll .arrows path.a1 {
+          -webkit-animation-delay: -1s;
+                  animation-delay: -1s; }
+        .courvoisier-0917 .continue-scroll .arrows path.a2 {
+          -webkit-animation-delay: -0.5s;
+                  animation-delay: -0.5s; }
+
+@-webkit-keyframes arrow {
+  0% {
+    opacity: 0; }
+  40% {
+    opacity: 1; }
+  80% {
+    opacity: 0; }
+  100% {
+    opacity: 0; } }
+
+@keyframes arrow {
+  0% {
+    opacity: 0; }
+  40% {
+    opacity: 1; }
+  80% {
+    opacity: 0; }
+  100% {
+    opacity: 0; } }
 
 br.mobile {
   display: none; }
@@ -396,6 +482,30 @@ br.xs-small {
   @media screen and (max-width: 440px) {
     br.xs-small {
       display: block; } }
+
+.general-arrow {
+  position: absolute;
+  z-index: 9;
+  top: 50%;
+  margin-top: -40px;
+  display: none !important; }
+  .general-arrow.slick-prev {
+    left: 10px;
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg); }
+  .general-arrow.slick-next {
+    right: 10px; }
+  .general-arrow .arrow {
+    font-size: 80px;
+    color: #FFFFFF;
+    opacity: 0.75;
+    -webkit-transition: opacity 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .general-arrow .arrow:hover {
+      opacity: 0.95; }
+  @media screen and (min-width: 960px) {
+    .general-arrow {
+      display: block !important; } }
 
 .courvoisier-0917 .recipe-slider {
   width: 100%;
@@ -496,15 +606,6 @@ br.xs-small {
           content: "·";
           padding-right: 8px;
           color: #2e2e2e; }
-    .courvoisier-0917 .recipe-slider .slider-wrapper .slick-arrow {
-      position: absolute;
-      z-index: 2;
-      top: 50%;
-      margin-top: -34px;
-      left: 0; }
-      .courvoisier-0917 .recipe-slider .slider-wrapper .slick-arrow.slick-next {
-        right: 0;
-        left: auto; }
     .courvoisier-0917 .recipe-slider .slider-wrapper .slick-dots {
       position: absolute;
       bottom: 3px;
@@ -556,6 +657,17 @@ br.xs-small {
     width: 100%;
     height: 42px;
     background-color: white; }
+    .courvoisier-0917 .map-component .searchbar-wrapper .search-icon {
+      position: absolute;
+      font-size: 24px;
+      top: 9px;
+      left: 9px;
+      color: #d6d6d6; }
+      @media screen and (min-width: 640px) {
+        .courvoisier-0917 .map-component .searchbar-wrapper .search-icon {
+          font-size: 45px;
+          top: 15px;
+          left: 32px; } }
     .courvoisier-0917 .map-component .searchbar-wrapper input {
       width: 100%;
       height: 42px;
@@ -581,13 +693,14 @@ br.xs-small {
     width: 100%;
     height: 210px;
     background-color: rgba(255, 255, 255, 0.95);
-    bottom: 80px;
+    bottom: 0;
     left: 0;
-    padding: 15px;
+    padding: 15px 0;
     z-index: 1; }
     @media screen and (min-width: 640px) {
       .courvoisier-0917 .map-component .results-container {
-        height: 250px; } }
+        height: 250px;
+        padding: 15px; } }
     @media screen and (min-width: 960px) {
       .courvoisier-0917 .map-component .results-container {
         width: 350px;
@@ -615,7 +728,7 @@ br.xs-small {
           width: calc(100% + 20px); } }
       .courvoisier-0917 .map-component .results-container .content .recipe-header {
         color: #9e7625;
-        padding: 0 65px 0 50px; }
+        padding: 0; }
         .courvoisier-0917 .map-component .results-container .content .recipe-header:after {
           display: block;
           content: "";
@@ -626,16 +739,21 @@ br.xs-small {
           left: 50%;
           margin: 15px 0 10px;
           margin-left: -40px; }
+        @media screen and (min-width: 640px) {
+          .courvoisier-0917 .map-component .results-container .content .recipe-header {
+            padding: 0 65px 0 50px; } }
         @media screen and (min-width: 960px) {
           .courvoisier-0917 .map-component .results-container .content .recipe-header {
             margin-bottom: 35px; }
             .courvoisier-0917 .map-component .results-container .content .recipe-header:after {
               display: none; } }
-      @media screen and (min-width: 960px) {
-        .courvoisier-0917 .map-component .results-container .content .results {
-          position: relative;
-          width: 100%;
-          max-width: 350px; } }
+      .courvoisier-0917 .map-component .results-container .content .results {
+        width: 100%; }
+        @media screen and (min-width: 960px) {
+          .courvoisier-0917 .map-component .results-container .content .results {
+            position: relative;
+            width: 100%;
+            max-width: 350px; } }
       .courvoisier-0917 .map-component .results-container .content .item {
         color: #2e2e2e;
         padding: 0 65px 0 50px;
@@ -645,6 +763,29 @@ br.xs-small {
           margin-bottom: 10px; }
           .courvoisier-0917 .map-component .results-container .content .item p span {
             display: block; }
+        .courvoisier-0917 .map-component .results-container .content .item .name {
+          display: inline-block;
+          padding-left: 30px;
+          position: relative; }
+          .courvoisier-0917 .map-component .results-container .content .item .name:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 2px;
+            left: 0;
+            width: 22px;
+            height: 22px;
+            background-image: url("http://local.courvoisier.com/assets/img/bar-icon.png");
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat; }
+          @media screen and (min-width: 640px) {
+            .courvoisier-0917 .map-component .results-container .content .item .name {
+              padding-left: 35px; }
+              .courvoisier-0917 .map-component .results-container .content .item .name:before {
+                width: 25px;
+                height: 25px;
+                top: 3px; } }
         @media screen and (min-width: 960px) {
           .courvoisier-0917 .map-component .results-container .content .item.highlight {
             background-color: #cb9d3b;
@@ -662,15 +803,27 @@ br.xs-small {
             padding-bottom: 25px; }
             .courvoisier-0917 .map-component .results-container .content .item:last-child:after {
               display: none; } }
-      .courvoisier-0917 .map-component .results-container .content .slick-arrow {
+      .courvoisier-0917 .map-component .results-container .content .map-arrow {
         position: absolute;
+        top: 25%;
+        padding: 5px;
+        padding-top: 7px;
         z-index: 2;
-        top: 50%;
-        margin-top: -34px;
-        left: 0; }
-        .courvoisier-0917 .map-component .results-container .content .slick-arrow.slick-next {
-          right: 0;
-          left: auto; }
+        font-size: 42px;
+        color: #cb9d3b; }
+        .courvoisier-0917 .map-component .results-container .content .map-arrow.slick-next {
+          right: 0px; }
+        .courvoisier-0917 .map-component .results-container .content .map-arrow.slick-prev {
+          left: 0px;
+          -webkit-transform: rotate(180deg);
+                  transform: rotate(180deg); }
+        @media screen and (min-width: 640px) {
+          .courvoisier-0917 .map-component .results-container .content .map-arrow {
+            font-size: 58px; }
+            .courvoisier-0917 .map-component .results-container .content .map-arrow.slick-next {
+              right: 5%; }
+            .courvoisier-0917 .map-component .results-container .content .map-arrow.slick-prev {
+              left: 5%; } }
   .courvoisier-0917 .map-component .map-container {
     position: relative;
     width: 100%;
@@ -684,22 +837,38 @@ br.xs-small {
       height: calc(100% + 20px);
       z-index: 0; }
 
-.courvoisier-0917 section.marquee {
-  background-image: url("http://baconmockup.com/1280/960");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; }
-  .courvoisier-0917 section.marquee .header-wrapper {
-    position: absolute;
+.courvoisier-0917 section.marquee .main-slider {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+  .courvoisier-0917 section.marquee .main-slider .slick-list,
+  .courvoisier-0917 section.marquee .main-slider .slick-track {
     width: 100%;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
-    padding: 10%;
-    color: #FFFFFF; }
-    .courvoisier-0917 section.marquee .header-wrapper .main--header {
-      display: block;
-      margin-bottom: 15px; }
-    .courvoisier-0917 section.marquee .header-wrapper .main--subtitle {
-      display: block;
-      margin-bottom: 30px; }
+    height: 100%; }
+    .courvoisier-0917 section.marquee .main-slider .slick-list .slide,
+    .courvoisier-0917 section.marquee .main-slider .slick-track .slide {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat; }
+      .courvoisier-0917 section.marquee .main-slider .slick-list .slide.slide-1,
+      .courvoisier-0917 section.marquee .main-slider .slick-track .slide.slide-1 {
+        background-image: url("http://baconmockup.com/1280/960"); }
+      .courvoisier-0917 section.marquee .main-slider .slick-list .slide.slide-2,
+      .courvoisier-0917 section.marquee .main-slider .slick-track .slide.slide-2 {
+        background-image: url("http://baconmockup.com/1280/960"); }
+
+.courvoisier-0917 section.marquee .header-wrapper {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  padding: 10%;
+  color: #FFFFFF; }
+  .courvoisier-0917 section.marquee .header-wrapper .main--header {
+    display: block;
+    margin-bottom: 15px; }
+  .courvoisier-0917 section.marquee .header-wrapper .main--subtitle {
+    display: block;
+    margin-bottom: 30px; }
