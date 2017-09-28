@@ -36,7 +36,7 @@ site.components.RecipeSliderComponent.prototype.init = function() {
 	  slidesToShow: 1,
 	  slidesToScroll: 1,
 	  arrows: true,
-	  autoplay: true,
+	  autoplay: false,
 	  autoplaySpeed: 8000,
 	  speed: 600,
 	  prevArrow: '<button type="button" data-role="none" class="general-arrow slick-prev" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-base_arrow"></span></button>',
@@ -45,6 +45,15 @@ site.components.RecipeSliderComponent.prototype.init = function() {
 	});
 
 	this.$slider.on('afterChange', $.proxy(this._closeAllRecipeInfo, this));
+
+	this.$slider.on('beforeChange', function(event, slick, currentSlide, nextSlide){
+	  console.log(nextSlide);
+	  if ( nextSlide === 1 ) {
+	  	ga('send', 'event', 'cocktails', 'nextcocktail-Cafe-Courvoisier');
+	  } else {
+	  	ga('send', 'event', 'cocktails', 'nextcocktail-Espresso-Martini');
+	  }
+	});
 
 }
 
@@ -55,6 +64,7 @@ site.components.RecipeSliderComponent.prototype.toogleRecipeInfo = function(e) {
 		this._closeRecipeInfo(e.target);
 	} else {
 		this._openRecipeInfo(e.target);
+		ga('send', 'event', 'cocktails', 'ReadMore-'+$(e.target).data('recipe'))
 	}
 
 }

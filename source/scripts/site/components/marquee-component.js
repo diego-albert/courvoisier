@@ -14,6 +14,8 @@ site.components.MarqueeComponent = el.core.utils.class.extend(function(options){
 	this.id = el.core.utils.uniqueId.get(this.name + '-');
 
 	this.$el = this.options.$el;
+	this.$mainCta = this.$el.find('button.block--button');
+	this.$continueScroll = this.$el.find('.continue-scroll');
 
 	this._register();
 
@@ -38,6 +40,20 @@ site.components.MarqueeComponent.prototype.init = function() {
     dots: true
 	});
 
+	this.$mainCta.on('click', $.proxy(this.ctaUserClick, this));
+
+	// this.$continueScroll.on('click', $.proxy(this.continueScroll, this));
+
+}
+
+site.components.MarqueeComponent.prototype.continueScroll = function() {
+	// Add functionality to btn?
+	// ga('send', 'event', 'Continue')
+}
+
+site.components.MarqueeComponent.prototype.ctaUserClick = function() {
+	// Add functionality to btn?
+	ga('send', 'event', 'Find-Your-Bar', )
 }
 
 site.components.MarqueeComponent.prototype.resize = function() {

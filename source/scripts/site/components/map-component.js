@@ -16,6 +16,7 @@ site.components.MapComponent = el.core.utils.class.extend(function(options){
 	this.$el = this.options.$el;
 	this.$mapView = document.getElementById('map-canvas');
 	this.$slider = this.$el.find('.results');
+	this.$input = this.$el.find('.input--label');
 
 	this._init = false;
 	this.map = null;
@@ -47,6 +48,10 @@ site.components.MapComponent = el.core.utils.class.extend(function(options){
 site.components.MapComponent.prototype.init = function() {
 
 	this.createMap();
+
+	this.$input.on("focusin", function(){
+		ga('send', 'event', 'Insert-Text')
+	});
 
 }
 
@@ -202,9 +207,7 @@ site.components.MapComponent.prototype.initSearchBar = function() {
       autocomplete.bindTo('bounds', that.map);
 
   autocomplete.addListener('place_changed', function(e) {
-  	// e.preventDefault();
-    // infowindow.close();
-    // marker.setVisible(false);
+
     var place = autocomplete.getPlace();
     if (!place.geometry) return;
 
@@ -215,28 +218,7 @@ site.components.MapComponent.prototype.initSearchBar = function() {
       that.map.setCenter(place.geometry.location);
       that.map.setZoom(17);  // Why 17? Because it looks good.
     }
-    return;
-    marker.setIcon(/** @type {google.maps.Icon} */({
-      url: place.icon,
-      size: new google.maps.Size(71, 71),
-      origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(17, 34),
-      scaledSize: new google.maps.Size(35, 35)
-    }));
-    marker.setPosition(place.geometry.location);
-    marker.setVisible(true);
 
-    var address = '';
-    if (place.address_components) {
-      address = [
-        (place.address_components[0] && place.address_components[0].short_name || ''),
-        (place.address_components[1] && place.address_components[1].short_name || ''),
-        (place.address_components[2] && place.address_components[2].short_name || '')
-      ].join(' ');
-    }
-
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-    infowindow.open(map, marker);
   });
 
 }
@@ -313,6 +295,8 @@ site.components.MapComponent.prototype.highLightListItem = function(targetId) {
 				this.$slider.slick('slickGoTo', currentIndex );
 
 			}
+
+			ga('send', 'event', 'Selection-Bar');
 
 		}
 

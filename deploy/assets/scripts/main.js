@@ -4085,6 +4085,8 @@ site.components.MarqueeComponent = el.core.utils.class.extend(function(options){
 	this.id = el.core.utils.uniqueId.get(this.name + '-');
 
 	this.$el = this.options.$el;
+	this.$mainCta = this.$el.find('button.block--button');
+	this.$continueScroll = this.$el.find('.continue-scroll');
 
 	this._register();
 
@@ -4109,6 +4111,20 @@ site.components.MarqueeComponent.prototype.init = function() {
     dots: true
 	});
 
+	this.$mainCta.on('click', $.proxy(this.ctaUserClick, this));
+
+	// this.$continueScroll.on('click', $.proxy(this.continueScroll, this));
+
+}
+
+site.components.MarqueeComponent.prototype.continueScroll = function() {
+	// Add functionality to btn?
+	// ga('send', 'event', 'Continue')
+}
+
+site.components.MarqueeComponent.prototype.ctaUserClick = function() {
+	// Add functionality to btn?
+	ga('send', 'event', 'Find-Your-Bar', )
 }
 
 site.components.MarqueeComponent.prototype.resize = function() {
@@ -4159,7 +4175,7 @@ site.components.RecipeSliderComponent.prototype.init = function() {
 	  slidesToShow: 1,
 	  slidesToScroll: 1,
 	  arrows: true,
-	  autoplay: true,
+	  autoplay: false,
 	  autoplaySpeed: 8000,
 	  speed: 600,
 	  prevArrow: '<button type="button" data-role="none" class="general-arrow slick-prev" aria-label="Previous" tabindex="0" role="button"><span class="arrow icon-base_arrow"></span></button>',
@@ -4168,6 +4184,15 @@ site.components.RecipeSliderComponent.prototype.init = function() {
 	});
 
 	this.$slider.on('afterChange', $.proxy(this._closeAllRecipeInfo, this));
+
+	this.$slider.on('beforeChange', function(event, slick, currentSlide, nextSlide){
+	  console.log(nextSlide);
+	  if ( nextSlide === 1 ) {
+	  	ga('send', 'event', 'cocktails', 'nextcocktail-Cafe-Courvoisier');
+	  } else {
+	  	ga('send', 'event', 'cocktails', 'nextcocktail-Espresso-Martini');
+	  }
+	});
 
 }
 
@@ -4178,6 +4203,7 @@ site.components.RecipeSliderComponent.prototype.toogleRecipeInfo = function(e) {
 		this._closeRecipeInfo(e.target);
 	} else {
 		this._openRecipeInfo(e.target);
+		ga('send', 'event', 'cocktails', 'ReadMore-'+$(e.target).data('recipe'))
 	}
 
 }
@@ -4234,6 +4260,7 @@ site.components.MapComponent = el.core.utils.class.extend(function(options){
 	this.$el = this.options.$el;
 	this.$mapView = document.getElementById('map-canvas');
 	this.$slider = this.$el.find('.results');
+	this.$input = this.$el.find('.input--label');
 
 	this._init = false;
 	this.map = null;
@@ -4265,6 +4292,10 @@ site.components.MapComponent = el.core.utils.class.extend(function(options){
 site.components.MapComponent.prototype.init = function() {
 
 	this.createMap();
+
+	this.$input.on("focusin", function(){
+		ga('send', 'event', 'Insert-Text')
+	});
 
 }
 
@@ -4420,9 +4451,7 @@ site.components.MapComponent.prototype.initSearchBar = function() {
       autocomplete.bindTo('bounds', that.map);
 
   autocomplete.addListener('place_changed', function(e) {
-  	// e.preventDefault();
-    // infowindow.close();
-    // marker.setVisible(false);
+
     var place = autocomplete.getPlace();
     if (!place.geometry) return;
 
@@ -4433,28 +4462,7 @@ site.components.MapComponent.prototype.initSearchBar = function() {
       that.map.setCenter(place.geometry.location);
       that.map.setZoom(17);  // Why 17? Because it looks good.
     }
-    return;
-    marker.setIcon(/** @type {google.maps.Icon} */({
-      url: place.icon,
-      size: new google.maps.Size(71, 71),
-      origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(17, 34),
-      scaledSize: new google.maps.Size(35, 35)
-    }));
-    marker.setPosition(place.geometry.location);
-    marker.setVisible(true);
 
-    var address = '';
-    if (place.address_components) {
-      address = [
-        (place.address_components[0] && place.address_components[0].short_name || ''),
-        (place.address_components[1] && place.address_components[1].short_name || ''),
-        (place.address_components[2] && place.address_components[2].short_name || '')
-      ].join(' ');
-    }
-
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-    infowindow.open(map, marker);
   });
 
 }
@@ -4531,6 +4539,8 @@ site.components.MapComponent.prototype.highLightListItem = function(targetId) {
 				this.$slider.slick('slickGoTo', currentIndex );
 
 			}
+
+			ga('send', 'event', 'Selection-Bar');
 
 		}
 
@@ -4746,7 +4756,7 @@ site.views.Page.prototype.init = function(e) {
 
   this.initPage();
 
-  // ga('send', 'pageview', 'Home-Café');
+  ga('send', 'pageview', 'Home-Café');
 
   return this;
 }
