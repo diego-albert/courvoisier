@@ -121,7 +121,8 @@
 				}
 				.item {
 					color: $COLOR_SOFT_BLACK;
-					padding: 0 65px 0 50px;
+					// padding: 0 65px 0 50px;
+					padding: 15px 65px 0 50px;
 					transition: background 0.5s ease-in-out;
 					p {
 						margin-bottom: 10px;
@@ -155,9 +156,16 @@
 							}
 						}
 					}
+					.adress {
+						margin-bottom: 20px;
+					}
+					.telephone,
+					.timetable {
+						display: none;
+					}
 					@include min-screen($BREAKPOINT_M) {
 						&.highlight {
-							@include fadeHex($COLOR_GOLD, 0.9)
+							@include fadeHex($COLOR_GOLD, 0.75)
 						}
 						&:after {
 							content: "";

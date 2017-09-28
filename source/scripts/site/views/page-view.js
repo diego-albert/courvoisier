@@ -23,6 +23,8 @@ site.views.Page.prototype.init = function(e) {
 
   this.initPage();
 
+  // ga('send', 'pageview', 'Home-Café');
+
   return this;
 }
 
@@ -50,6 +52,7 @@ site.views.Page.prototype.resize = function(size) {
   for (var i = 0; i < this.components.length; i++) {
     this.components[i].resize(size);
   };
+
 }
 
 site.views.Page.prototype._resizeHandler = function(e) {

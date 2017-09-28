@@ -99,7 +99,7 @@ el.core.managers.layoutManager = (function() {
 
     var w = winSize.width,
         h = winSize.height
-    ; 
+    ;
 
     if($target.data('fullscreenMinHeight')) {
 
@@ -143,7 +143,12 @@ el.core.managers.layoutManager = (function() {
 
         _setSizes($target);
       }
-    });    
+    });
+
+    $('#maincontent-cv-0917').css({
+      'height': winSize.height*3 + 'px',
+      'overflow-y': 'hidden'
+    })
 
     el.core.events.globalDispatcher.emit(Event.RESIZE, {
       'winW': winSize.width,

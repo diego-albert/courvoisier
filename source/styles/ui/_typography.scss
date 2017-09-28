@@ -49,10 +49,13 @@
 }
 
 .input--label {
+	@include font-size(18px, 1em);
 	@extend %engravers-font;
-	@include font-size(20px, 1em);
 	font-weight: normal;
 	text-transform: uppercase;
+	@include min-screen($BREAKPOINT_XS) {
+		@include font-size(20px, 1em);
+	}
 	@include min-screen($BREAKPOINT_S) {
 		@include font-size(30px, 1em);
 	}

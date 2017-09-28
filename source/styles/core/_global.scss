@@ -170,6 +170,8 @@ br.xs-small {
     top: 50%;
     margin-top: -40px;
     display: none!important;
+    background: transparent!important;
+    background-image: none;
 
     &.slick-prev {
       left: 10px;
