@@ -19,26 +19,118 @@
 				position: relative;
 				width: 100%;
 				height: 100%;
-				.recipe-bg {
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 100%;
-					background-size: cover;
-					background-position: center;
-					background-repeat: no-repeat;
-					&.recipe-1 {
+				// .recipe-bg {
+				// 	position: absolute;
+				// 	top: 0;
+				// 	left: 0;
+				// 	width: 100%;
+				// 	height: 100%;
+				// 	background-size: cover;
+				// 	background-position: center;
+				// 	background-repeat: no-repeat;
+				// 	&.recipe-1 {
+				// 		background-image: url("http://baconmockup.com/1280/960");
+				// 	}
+				// 	&.recipe-2 {
+				// 		background-image: url("http://baconmockup.com/1280/960");
+				// 	}
+				// }
+				.recipe-video {
+						position: relative;
+						width: 100%;
+						height: 100%;
+						overflow: hidden;
+						background-color: pink;
+						z-index: 1;
 						background-image: url("http://baconmockup.com/1280/960");
-					}
-					&.recipe-2 {
-						background-image: url("http://baconmockup.com/1280/960");
-					}
+						background-size: cover;
+						background-position: center;
+						background-repeat: no-repeat;
+						.video-full {
+							position: absolute;
+							width: 100%;
+							height: 100%;
+							min-height: 100%;
+							top: 50%;
+							left: 50%;
+							transform: translate(-50%,-50%);
+							@include min-screen($BREAKPOINT_M){
+							  width: 150%;
+    						height: 120%;
+    					}
+						}
+						.controls {
+							position: absolute;
+							right: 0;
+							bottom: 0;
+							width: 120px;
+							height: 60px;
+							// color: $COLOR_GOLD;
+							color: white;
+							div {
+								display: inline-block;
+								width: 40px;
+								height: 40px;
+								padding: 8px;
+								overflow: hidden;
+								position: relative;
+								top: 10px;
+								cursor: pointer;
+								span {
+									position: absolute;
+									top: 8px;
+									left: 8px;
+									cursor: pointer;
+									&.hide {
+										display: none;
+									}
+								}
+								&.state-control {
+									left: 10px;
+									.icon-play3 {
+											display: none;
+										}
+										.icon-pause2 {
+											display: block;
+										}
+									&.playing {
+										.icon-play3 {
+											display: block;
+										}
+										.icon-pause2 {
+											display: none;
+										}
+									}
+								}
+								&.vol-control {
+									left: 25px;
+									.vol-on {
+										display: block;
+									}
+									.vol-off {
+										display: none;
+									}
+									&.muted {
+										.vol-on {
+											display: none;
+										}
+										.vol-off {
+											display: block;
+										}
+									}
+								}
+
+							}
+							span {
+								font-size: 24px;
+							}
+						}
 				}
 				.recipe-info {
 					position: absolute;
 					top: 15%;
 					left: 0;
+					z-index: 9;
 					// width: 75%;
 					width: 280px;
 					height: 40%;

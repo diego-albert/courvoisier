@@ -145,10 +145,22 @@ el.core.managers.layoutManager = (function() {
       }
     });
 
-    $('#maincontent-cv-0917').css({
-      'height': winSize.height*3 + 'px',
-      'overflow-y': 'hidden'
-    })
+
+    if (el.core.utils.environment.isDesktop()) {
+
+      $('#maincontent-cv-0917').css({
+        'height': winSize.height*3 + 'px',
+        'overflow-y': 'hidden'
+      })
+
+    } else {
+
+      $('#maincontent-cv-0917').css({
+        'height': winSize.height*3 + 'px',
+        // 'overflow-y': 'hidden'
+      })
+
+    }
 
     el.core.events.globalDispatcher.emit(Event.RESIZE, {
       'winW': winSize.width,

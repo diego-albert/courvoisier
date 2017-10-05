@@ -17,11 +17,21 @@ site.components.RecipeSliderComponent = el.core.utils.class.extend(function(opti
 	this.$slider = this.$el.find('.slider-wrapper');
 	this.$moreInfoBtn = this.$slider.find('.more-info');
 
+	this.distanceTop = 0;
+	this.videoPlaying = false;
+	this.youtubeReady = false;
+
 	this._recipeInfoOpen = false;
 
 	this._register();
 
 	console.log('::init', this.name);
+
+	// Load the IFrame Player API code asynchronously.
+	var tag = document.createElement('script');
+	tag.src = "https://www.youtube.com/player_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 	this.init();
 
@@ -31,8 +41,14 @@ site.components.RecipeSliderComponent = el.core.utils.class.extend(function(opti
 
 site.components.RecipeSliderComponent.prototype.init = function() {
 
+	var slideCount = this.$slider.on('init', $.proxy(
+    function(event, slick){
+      slideCount = slick.slideCount;
+      return slideCount;
+    }, this));
+
 	this.$slider.slick({
-	  infinite: true,
+	  infinite: false,
 	  slidesToShow: 1,
 	  slidesToScroll: 1,
 	  arrows: true,
@@ -44,16 +60,99 @@ site.components.RecipeSliderComponent.prototype.init = function() {
     dots: true
 	});
 
+	// Declare Youtube Videos for all items
+	this.initYTPlayer(slideCount);
+
+
+	if (el.core.utils.environment.isDesktop()) {
+
+			this.$slider.on('beforeChange', $.proxy(
+				function(event, slick, currentSlide, nextSlide, slideCount){
+						if (currentSlide != nextSlide) {
+								// console.log('slider: ', currentSlide, nextSlide);
+								this.sliderChange(nextSlide)
+						}
+				}, this) );
+
+			$(document).on('scroll', $.proxy(this.checkScrollPosition, this));
+
+			this.$slider.find('.state-control').on('click', $.proxy(this.toggleStatePlayer, this));
+			this.$slider.find('.vol-control').on('click', $.proxy(this.toggleMutePlayer, this));
+
+	}
+
 	this.$slider.on('afterChange', $.proxy(this._closeAllRecipeInfo, this));
 
-	this.$slider.on('beforeChange', function(event, slick, currentSlide, nextSlide){
-	  console.log(nextSlide);
-	  if ( nextSlide === 1 ) {
+}
+
+site.components.RecipeSliderComponent.prototype.initYTPlayer = function(slideCount) {
+	// console.log('***** SLIDECOUNT: ', slideCount);
+
+		window.player = [];
+		var that = this;
+
+		window.onYouTubeIframeAPIReady = function () {
+
+			that.youtubeReady = true;
+
+		var stateChangeProxy = $.proxy( function( event ){ that.stateChange(event) }, this);
+
+
+		i = 1;
+		while (i <= slideCount) {
+			player[i] = new YT.Player('fullvideo-'+i, {
+	      videoId: that.$el.find('#fullvideo-'+i).data('yt-id'),
+	      playerVars: {
+	          controls: 0,
+	          showinfo: 0,
+	          rel: 0,
+	          autohide: 1,
+	          modestbranding: 0,
+	          // mute: true,
+	          //start: 260,
+	          wmode: 'transparent'
+	      },
+	      events: {
+	          'onStateChange': stateChangeProxy
+	      }
+	    });
+	    i++;
+		}
+
+	}
+
+}
+
+site.components.RecipeSliderComponent.prototype.stateChange = function(event) {
+	var state = event.data;
+	var player = event.target.a.id;
+	var id = player.substr(player.length - 1)
+
+	console.log( 'state change: ', player, id, state );
+
+	var target = '.play-controller-'+id;
+
+	this.$slider.find(target).toggleClass('playing');
+
+}
+
+site.components.RecipeSliderComponent.prototype.sliderChange = function(nextSlide) {
+
+	if ( nextSlide === 0 ) {
 	  	ga('send', 'event', 'cocktails', 'nextcocktail-Cafe-Courvoisier');
+	  	if (el.core.utils.environment.isDesktop()) {
+	  		player[1].playVideo();
+	  		player[2].pauseVideo();
+	  	}
+
+
 	  } else {
 	  	ga('send', 'event', 'cocktails', 'nextcocktail-Espresso-Martini');
+	  	if ( el.core.utils.environment.isDesktop() ) {
+		  	player[2].playVideo();
+	  		player[1].pauseVideo()
+		  }
 	  }
-	});
 
 }
 
@@ -93,8 +192,73 @@ site.components.RecipeSliderComponent.prototype._openRecipeInfo = function(targe
 					 .parent().addClass('open');
 }
 
+site.components.RecipeSliderComponent.prototype.checkScrollPosition = function(ev) {
+
+	if (!this.youtubeReady) {
+		return;
+	}
+
+	var scrollPos = $(document).scrollTop();
+
+	if ( (this.distanceTop - (window.innerHeight/2)) < scrollPos && !this.videoPlaying ){
+		// console.log('play video!');
+
+			console.log('play');
+			this.videoPlaying = true;
+			player[1].playVideo()
+			player[2].pauseVideo()
+
+
+	} else if ( (this.distanceTop - (window.innerHeight/2)) > scrollPos && this.videoPlaying ) {
+	// if ( (this.distanceTop - (window.innerHeight/2)) > scrollPos && this.videoPlaying ) {
+
+		this.videoPlaying = false;
+		this.$slider.slick('slickGoTo', 0 );
+		player[1].pauseVideo()
+		player[2].pauseVideo()
+	}
+
+}
+
 site.components.RecipeSliderComponent.prototype.resize = function() {
 
+	var scrollTop     = $(window).scrollTop(),
+	    elementOffset = this.$el.offset().top;
+
+	 this.distanceTop = (elementOffset - scrollTop);
+
+	    console.log('scrollTop', this.distanceTop );
+
+}
+
+site.components.RecipeSliderComponent.prototype.toggleMutePlayer = function(evt) {
+
+	var id = $(evt.currentTarget).data('video');
+
+	if(player[id].isMuted()){
+
+      player[id].unMute();
+
+  } else {
+
+      player[id].mute();
+
+  }
+
+  $(evt.currentTarget).toggleClass('muted');
+
+}
+
+site.components.RecipeSliderComponent.prototype.toggleStatePlayer = function(evt) {
+	var id = $(evt.currentTarget).data('video');
+	var state = player[id].getPlayerState();
+	console.log('evt: ', id, state );
+
+		if(state === 1){
+			player[id].pauseVideo();
+		} else {
+			player[id].playVideo();
+		}
 }
 
 site.components.RecipeSliderComponent.prototype.destroy = function() {

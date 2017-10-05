@@ -167,8 +167,8 @@
 
 @font-face {
   font-family: 'icomoon';
-  src: url("http://local.courvoisier.com/assets/fonts/icomoon.eot?3mpt18");
-  src: url("http://local.courvoisier.com/assets/fonts/icomoon.eot?3mpt18#iefix") format("embedded-opentype"), url("http://local.courvoisier.com/assets/fonts/icomoon.ttf?3mpt18") format("truetype"), url("http://local.courvoisier.com/assets/fonts/icomoon.woff?3mpt18") format("woff"), url("http://local.courvoisier.com/assets/fonts/icomoon.svg?3mpt18#icomoon") format("svg");
+  src: url("http://local.courvoisier.com/assets/fonts/icomoon.eot?gw8jv9");
+  src: url("http://local.courvoisier.com/assets/fonts/icomoon.eot?gw8jv9#iefix") format("embedded-opentype"), url("http://local.courvoisier.com/assets/fonts/icomoon.ttf?gw8jv9") format("truetype"), url("http://local.courvoisier.com/assets/fonts/icomoon.woff?gw8jv9") format("woff"), url("http://local.courvoisier.com/assets/fonts/icomoon.svg?gw8jv9#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -190,6 +190,18 @@
 
 .icon-base_arrow:before {
   content: "\e90e"; }
+
+.icon-play3:before {
+  content: "\ea1c"; }
+
+.icon-pause2:before {
+  content: "\ea1d"; }
+
+.icon-volume-high:before {
+  content: "\ea26"; }
+
+.icon-volume-mute:before {
+  content: "\ea29"; }
 
 .main--header {
   font-size: 42px;
@@ -528,23 +540,80 @@ br.xs-small {
       position: relative;
       width: 100%;
       height: 100%; }
-      .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
+      .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video {
+        position: relative;
         width: 100%;
         height: 100%;
+        overflow: hidden;
+        background-color: pink;
+        z-index: 1;
+        background-image: url("http://baconmockup.com/1280/960");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat; }
-        .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-bg.recipe-1 {
-          background-image: url("http://baconmockup.com/1280/960"); }
-        .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-bg.recipe-2 {
-          background-image: url("http://baconmockup.com/1280/960"); }
+        .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .video-full {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          min-height: 100%;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translate(-50%, -50%);
+                  transform: translate(-50%, -50%); }
+          @media screen and (min-width: 960px) {
+            .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .video-full {
+              width: 150%;
+              height: 120%; } }
+        .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 120px;
+          height: 60px;
+          color: white; }
+          .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            padding: 8px;
+            overflow: hidden;
+            position: relative;
+            top: 10px;
+            cursor: pointer; }
+            .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div span {
+              position: absolute;
+              top: 8px;
+              left: 8px;
+              cursor: pointer; }
+              .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div span.hide {
+                display: none; }
+            .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div.state-control {
+              left: 10px; }
+              .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div.state-control .icon-play3 {
+                display: none; }
+              .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div.state-control .icon-pause2 {
+                display: block; }
+              .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div.state-control.playing .icon-play3 {
+                display: block; }
+              .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div.state-control.playing .icon-pause2 {
+                display: none; }
+            .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div.vol-control {
+              left: 25px; }
+              .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div.vol-control .vol-on {
+                display: block; }
+              .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div.vol-control .vol-off {
+                display: none; }
+              .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div.vol-control.muted .vol-on {
+                display: none; }
+              .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls div.vol-control.muted .vol-off {
+                display: block; }
+          .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-video .controls span {
+            font-size: 24px; }
       .courvoisier-0917 .recipe-slider .slider-wrapper .recipe-item .recipe-info {
         position: absolute;
         top: 15%;
         left: 0;
+        z-index: 9;
         width: 280px;
         height: 40%;
         min-height: 285px;

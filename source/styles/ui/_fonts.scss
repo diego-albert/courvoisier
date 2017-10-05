@@ -56,11 +56,11 @@
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('#{$url_prefix}/assets/fonts/icomoon.eot?3mpt18');
-  src:  url('#{$url_prefix}/assets/fonts/icomoon.eot?3mpt18#iefix') format('embedded-opentype'),
-    url('#{$url_prefix}/assets/fonts/icomoon.ttf?3mpt18') format('truetype'),
-    url('#{$url_prefix}/assets/fonts/icomoon.woff?3mpt18') format('woff'),
-    url('#{$url_prefix}/assets/fonts/icomoon.svg?3mpt18#icomoon') format('svg');
+  src:  url('#{$url_prefix}/assets/fonts/icomoon.eot?gw8jv9');
+  src:  url('#{$url_prefix}/assets/fonts/icomoon.eot?gw8jv9#iefix') format('embedded-opentype'),
+    url('#{$url_prefix}/assets/fonts/icomoon.ttf?gw8jv9') format('truetype'),
+    url('#{$url_prefix}/assets/fonts/icomoon.woff?gw8jv9') format('woff'),
+    url('#{$url_prefix}/assets/fonts/icomoon.svg?gw8jv9#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -85,4 +85,16 @@
 }
 .icon-base_arrow:before {
   content: "\e90e";
+}
+.icon-play3:before {
+  content: "\ea1c";
+}
+.icon-pause2:before {
+  content: "\ea1d";
+}
+.icon-volume-high:before {
+  content: "\ea26";
+}
+.icon-volume-mute:before {
+  content: "\ea29";
 }
