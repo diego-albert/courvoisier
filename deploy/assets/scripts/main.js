@@ -4028,10 +4028,10 @@ el.core.managers.layoutManager = (function() {
 
     } else {
 
-      $('#maincontent-cv-0917').css({
-        'height': winSize.height*3 + 'px',
-        // 'overflow-y': 'hidden'
-      })
+      // $('#maincontent-cv-0917').css({
+      //   'height': winSize.height*3 + 'px',
+      //   // 'overflow-y': 'hidden'
+      // })
 
     }
 
@@ -4173,6 +4173,7 @@ site.components.RecipeSliderComponent = el.core.utils.class.extend(function(opti
 	this.youtubeReady = false;
 
 	this._recipeInfoOpen = false;
+	this.videoFS = false;
 
 	this._register();
 
@@ -4217,22 +4218,26 @@ site.components.RecipeSliderComponent.prototype.init = function() {
 
 	if (el.core.utils.environment.isDesktop()) {
 
-			this.$slider.on('beforeChange', $.proxy(
-				function(event, slick, currentSlide, nextSlide, slideCount){
-						if (currentSlide != nextSlide) {
-								// console.log('slider: ', currentSlide, nextSlide);
-								this.sliderChange(nextSlide)
-						}
-				}, this) );
-
 			$(document).on('scroll', $.proxy(this.checkScrollPosition, this));
 
 			this.$slider.find('.state-control').on('click', $.proxy(this.toggleStatePlayer, this));
 			this.$slider.find('.vol-control').on('click', $.proxy(this.toggleMutePlayer, this));
 
+	} else {
+
+		this.$slider.find('.recipe-video').on('click', $.proxy(this.playFullScreenVideo, this));
+
 	}
 
 	this.$slider.on('afterChange', $.proxy(this._closeAllRecipeInfo, this));
+
+	this.$slider.on('beforeChange', $.proxy(
+			function(event, slick, currentSlide, nextSlide, slideCount){
+					if (currentSlide != nextSlide) {
+							// console.log('slider: ', currentSlide, nextSlide);
+							this.sliderChange(nextSlide)
+					}
+			}, this) );
 
 }
 
@@ -4285,12 +4290,18 @@ site.components.RecipeSliderComponent.prototype.stateChange = function(event) {
 
 	this.$slider.find(target).toggleClass('playing');
 
+	if ( this.videoFS && (state === 0 || state === 2 ) ){
+		this.removeFullScreenVideo();
+	}
+
 }
 
 site.components.RecipeSliderComponent.prototype.sliderChange = function(nextSlide) {
 
 	if ( nextSlide === 0 ) {
-	  	ga('send', 'event', 'cocktails', 'nextcocktail-Cafe-Courvoisier');
+
+	  		ga('send', 'event', 'cocktails', 'nextcocktail-Cafe-Courvoisier');
+
 	  	if (el.core.utils.environment.isDesktop()) {
 	  		player[1].playVideo();
 	  		player[2].pauseVideo();
@@ -4298,7 +4309,9 @@ site.components.RecipeSliderComponent.prototype.sliderChange = function(nextSlid
 
 
 	  } else {
-	  	ga('send', 'event', 'cocktails', 'nextcocktail-Espresso-Martini');
+
+	  		ga('send', 'event', 'cocktails', 'nextcocktail-Espresso-Martini');
+
 	  	if ( el.core.utils.environment.isDesktop() ) {
 		  	player[2].playVideo();
 	  		player[1].pauseVideo()
@@ -4314,7 +4327,9 @@ site.components.RecipeSliderComponent.prototype.toogleRecipeInfo = function(e) {
 		this._closeRecipeInfo(e.target);
 	} else {
 		this._openRecipeInfo(e.target);
-		ga('send', 'event', 'cocktails', 'ReadMore-'+$(e.target).data('recipe'))
+
+			ga('send', 'event', 'cocktails', 'ReadMore-'+$(e.target).data('recipe'))
+
 	}
 
 }
@@ -4398,6 +4413,28 @@ site.components.RecipeSliderComponent.prototype.toggleMutePlayer = function(evt)
 
   $(evt.currentTarget).toggleClass('muted');
 
+}
+
+site.components.RecipeSliderComponent.prototype.playFullScreenVideo = function(evt) {
+	var target = $(evt.currentTarget);
+	var id = target.data('pvideo');
+
+	target.addClass('ontop')
+				.find('.video-full').fadeIn();
+	player[id].playVideo();
+
+	$(document).scrollTop($(document).height());
+	$('html, body').css({ 'overflow': 'hidden' });
+
+	this.videoFS = true;
+
+}
+
+site.components.RecipeSliderComponent.prototype.removeFullScreenVideo = function(evt) {
+	$('.recipe-video').removeClass('ontop');
+	$('.video-full').fadeOut();
+	$('html, body').css({ 'overflow': 'auto' });
+	this.videoFS = false;
 }
 
 site.components.RecipeSliderComponent.prototype.toggleStatePlayer = function(evt) {

@@ -17,7 +17,13 @@
 					background-position: center;
 					background-repeat: no-repeat;
 					&.slide-1 {
-						background-image: url("http://baconmockup.com/1280/960");
+						background-image: url("/assets/img/cafei_courvoisier_mobile.jpg");
+						@include min-screen($BREAKPOINT_S){
+							background-image: url("/assets/img/cafei_courvoisier_tablet.jpg");
+						}
+						@include min-screen($BREAKPOINT_M){
+							background-image: url("/assets/img/cafei_courvoisier_desktop.jpg");
+						}
 					}
 				}
 			}

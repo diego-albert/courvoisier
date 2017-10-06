@@ -155,10 +155,10 @@ el.core.managers.layoutManager = (function() {
 
     } else {
 
-      $('#maincontent-cv-0917').css({
-        'height': winSize.height*3 + 'px',
-        // 'overflow-y': 'hidden'
-      })
+      // $('#maincontent-cv-0917').css({
+      //   'height': winSize.height*3 + 'px',
+      //   // 'overflow-y': 'hidden'
+      // })
 
     }
 
