@@ -49,9 +49,9 @@ site.components.MapComponent.prototype.init = function() {
 
 	this.createMap();
 
-	this.$input.on("focusin", function(){
-		ga('send', 'event', 'Insert-Text')
-	});
+	// this.$input.on("focusin", function(){
+	// 	ga('send', 'event', 'Insert-Text')
+	// });
 
 }
 
@@ -306,7 +306,7 @@ site.components.MapComponent.prototype.highLightListItem = function(targetId) {
 
 			}
 
-			ga('send', 'event', 'Selection-Bar');
+			// ga('send', 'event', 'Selection-Bar');
 
 		}
 

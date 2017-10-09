@@ -53,7 +53,7 @@ site.components.MarqueeComponent.prototype.continueScroll = function() {
 
 site.components.MarqueeComponent.prototype.ctaUserClick = function() {
 	// Add functionality to btn?
-	ga('send', 'event', 'Find-Your-Bar', )
+	// ga('send', 'event', 'Find-Your-Bar')
 }
 
 site.components.MarqueeComponent.prototype.resize = function() {

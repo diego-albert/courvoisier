@@ -25,6 +25,15 @@
 							background-image: url("/assets/img/cafei_courvoisier_desktop.jpg");
 						}
 					}
+					&.slide-2 {
+						background-image: url("/assets/img/espresso-mobile.jpg");
+						@include min-screen($BREAKPOINT_S){
+							background-image: url("/assets/img/espresso-tablet.jpg");
+						}
+						@include min-screen($BREAKPOINT_M){
+							background-image: url("/assets/img/espresso-desktop.jpg");
+						}
+					}
 				}
 			}
 		}

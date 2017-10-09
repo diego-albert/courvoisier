@@ -1,10 +1,11 @@
 .main--header {
 	@extend %lora-italic-font;
-	@include font-size(42px, 1.5em);
+	@include font-size(42px, 1em);
 	font-weight: normal;
 	font-style: italic;
 	@include min-screen($BREAKPOINT_S) {
-		@include font-size(64px, 1.5em);
+		@include font-size(64px, 1em);
+		margin-bottom: 15px;
 	}
 }
 

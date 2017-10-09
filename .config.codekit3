@@ -209,6 +209,36 @@
 		"opt": 0,
 		"q": 100
 		},
+	"\/deploy\/assets\/img\/espresso-desktop.jpg": {
+		"ft": 16384,
+		"iS": 484464,
+		"oA": 0,
+		"oAP": "\/deploy\/assets\/img\/espresso-desktop.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/deploy\/assets\/img\/espresso-mobile.jpg": {
+		"ft": 16384,
+		"iS": 71235,
+		"oA": 0,
+		"oAP": "\/deploy\/assets\/img\/espresso-mobile.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"\/deploy\/assets\/img\/espresso-tablet.jpg": {
+		"ft": 16384,
+		"iS": 187174,
+		"oA": 0,
+		"oAP": "\/deploy\/assets\/img\/espresso-tablet.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
 	"\/deploy\/assets\/img\/Espresso_Play.jpg": {
 		"ft": 16384,
 		"iS": 73664,
