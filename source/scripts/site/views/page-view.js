@@ -23,7 +23,7 @@ site.views.Page.prototype.init = function(e) {
 
   this.initPage();
 
-  // ga('send', 'pageview', 'Home-Café');
+  ga('send', 'pageview', 'Home-Café');
 
   return this;
 }

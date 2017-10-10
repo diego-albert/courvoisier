@@ -41,7 +41,6 @@ site.components.MarqueeComponent.prototype.init = function() {
 	});
 
 	this.$mainCta.on('click', $.proxy(this.ctaUserClick, this));
-
 	// this.$continueScroll.on('click', $.proxy(this.continueScroll, this));
 
 }
@@ -53,7 +52,12 @@ site.components.MarqueeComponent.prototype.continueScroll = function() {
 
 site.components.MarqueeComponent.prototype.ctaUserClick = function() {
 	// Add functionality to btn?
-	// ga('send', 'event', 'Find-Your-Bar')
+	$('html,body').animate({
+      scrollTop: $(".map-section").offset().top},
+  'slow');
+
+  ga('send', 'event', 'Find-Your-Bar');
+
 }
 
 site.components.MarqueeComponent.prototype.resize = function() {

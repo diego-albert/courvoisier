@@ -149,7 +149,7 @@ site.components.RecipeSliderComponent.prototype.sliderChange = function(nextSlid
 
 	if ( nextSlide === 0 ) {
 
-	  		// ga('send', 'event', 'cocktails', 'nextcocktail-Cafe-Courvoisier');
+	  		ga('send', 'event', 'cocktails', 'nextcocktail-Cafe-Courvoisier');
 
 	  	if (el.core.utils.environment.isDesktop()) {
 	  		player[1].playVideo();
@@ -159,7 +159,7 @@ site.components.RecipeSliderComponent.prototype.sliderChange = function(nextSlid
 
 	  } else {
 
-	  		// ga('send', 'event', 'cocktails', 'nextcocktail-Espresso-Martini');
+	  		ga('send', 'event', 'cocktails', 'nextcocktail-Espresso-Martini');
 
 	  	if ( el.core.utils.environment.isDesktop() ) {
 		  	player[2].playVideo();
@@ -177,7 +177,7 @@ site.components.RecipeSliderComponent.prototype.toogleRecipeInfo = function(e) {
 	} else {
 		this._openRecipeInfo(e.target);
 
-			// ga('send', 'event', 'cocktails', 'ReadMore-'+$(e.target).data('recipe'))
+			ga('send', 'event', 'cocktails', 'ReadMore-'+$(e.target).data('recipe'))
 
 	}
 

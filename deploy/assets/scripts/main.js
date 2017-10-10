@@ -4124,7 +4124,6 @@ site.components.MarqueeComponent.prototype.init = function() {
 	});
 
 	this.$mainCta.on('click', $.proxy(this.ctaUserClick, this));
-
 	// this.$continueScroll.on('click', $.proxy(this.continueScroll, this));
 
 }
@@ -4136,7 +4135,12 @@ site.components.MarqueeComponent.prototype.continueScroll = function() {
 
 site.components.MarqueeComponent.prototype.ctaUserClick = function() {
 	// Add functionality to btn?
-	// ga('send', 'event', 'Find-Your-Bar')
+	$('html,body').animate({
+      scrollTop: $(".map-section").offset().top},
+  'slow');
+
+  ga('send', 'event', 'Find-Your-Bar');
+
 }
 
 site.components.MarqueeComponent.prototype.resize = function() {
@@ -4300,7 +4304,7 @@ site.components.RecipeSliderComponent.prototype.sliderChange = function(nextSlid
 
 	if ( nextSlide === 0 ) {
 
-	  		// ga('send', 'event', 'cocktails', 'nextcocktail-Cafe-Courvoisier');
+	  		ga('send', 'event', 'cocktails', 'nextcocktail-Cafe-Courvoisier');
 
 	  	if (el.core.utils.environment.isDesktop()) {
 	  		player[1].playVideo();
@@ -4310,7 +4314,7 @@ site.components.RecipeSliderComponent.prototype.sliderChange = function(nextSlid
 
 	  } else {
 
-	  		// ga('send', 'event', 'cocktails', 'nextcocktail-Espresso-Martini');
+	  		ga('send', 'event', 'cocktails', 'nextcocktail-Espresso-Martini');
 
 	  	if ( el.core.utils.environment.isDesktop() ) {
 		  	player[2].playVideo();
@@ -4328,7 +4332,7 @@ site.components.RecipeSliderComponent.prototype.toogleRecipeInfo = function(e) {
 	} else {
 		this._openRecipeInfo(e.target);
 
-			// ga('send', 'event', 'cocktails', 'ReadMore-'+$(e.target).data('recipe'))
+			ga('send', 'event', 'cocktails', 'ReadMore-'+$(e.target).data('recipe'))
 
 	}
 
@@ -4506,9 +4510,9 @@ site.components.MapComponent.prototype.init = function() {
 
 	this.createMap();
 
-	// this.$input.on("focusin", function(){
-	// 	ga('send', 'event', 'Insert-Text')
-	// });
+	this.$input.on("focusin", function(){
+		ga('send', 'event', 'Insert-Text')
+	});
 
 }
 
@@ -4763,7 +4767,7 @@ site.components.MapComponent.prototype.highLightListItem = function(targetId) {
 
 			}
 
-			// ga('send', 'event', 'Selection-Bar');
+			ga('send', 'event', 'Selection-Bar');
 
 		}
 
@@ -4979,7 +4983,7 @@ site.views.Page.prototype.init = function(e) {
 
   this.initPage();
 
-  // ga('send', 'pageview', 'Home-Café');
+  ga('send', 'pageview', 'Home-Café');
 
   return this;
 }
