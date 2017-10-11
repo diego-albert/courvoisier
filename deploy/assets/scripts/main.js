@@ -4423,6 +4423,9 @@ site.components.RecipeSliderComponent.prototype.playFullScreenVideo = function(e
 	var target = $(evt.currentTarget);
 	var id = target.data('pvideo');
 
+	player[1].pauseVideo()
+	player[2].pauseVideo()
+
 	target.addClass('ontop')
 				.find('.video-full').fadeIn();
 	player[id].playVideo();
