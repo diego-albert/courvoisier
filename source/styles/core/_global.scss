@@ -52,11 +52,17 @@ p {
   section {
     position: relative;
     min-height: 640px;
+    max-height: 667px;
     @include min-screen($BREAKPOINT_S){
       min-height: 825px;
+      max-height: none;
+      .is-device & {
+        max-height: 780px;
+      }
     }
     @include min-screen($BREAKPOINT_M){
       min-height: 670px;
+      max-height: none;
     }
     &:after {
       content: "";
