@@ -206,7 +206,7 @@
 		"oAP": "\/deploy\/assets\/img\/cafei_courvoisier_tablet.jpg",
 		"oF": 0,
 		"oIPL": 0,
-		"opt": 0,
+		"opt": 1,
 		"q": 100
 		},
 	"\/deploy\/assets\/img\/espresso-desktop.jpg": {
@@ -226,7 +226,7 @@
 		"oAP": "\/deploy\/assets\/img\/espresso-mobile.jpg",
 		"oF": 0,
 		"oIPL": 0,
-		"opt": 0,
+		"opt": 1,
 		"q": 100
 		},
 	"\/deploy\/assets\/img\/espresso-tablet.jpg": {
@@ -236,7 +236,7 @@
 		"oAP": "\/deploy\/assets\/img\/espresso-tablet.jpg",
 		"oF": 0,
 		"oIPL": 0,
-		"opt": 0,
+		"opt": 1,
 		"q": 100
 		},
 	"\/deploy\/assets\/img\/Espresso_Play.jpg": {

@@ -53,10 +53,10 @@ site.components.MarqueeComponent.prototype.continueScroll = function() {
 site.components.MarqueeComponent.prototype.ctaUserClick = function() {
 	// Add functionality to btn?
 	$('html,body').animate({
-      scrollTop: $(".map-section").offset().top},
+      scrollTop: $(".recipe-section").offset().top},
   'slow');
 
-  ga('send', 'event', 'Find-Your-Bar');
+  ga('send', 'event', 'make-your-cocktail');
 
 }
 
