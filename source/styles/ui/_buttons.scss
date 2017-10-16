@@ -22,15 +22,16 @@ button {
 	border: none;
 	outline: none;
 	overflow: hidden;
-	background: transparent;
+	background-color: rgba(190,166,122,0.6);
 	text-transform: uppercase;
-	color: $COLOR_GOLD;
+	color: #fff;
 	border: solid 1px $COLOR_GOLD;
 	padding: 18px 30px;
 	transition: background $HOVER_DURATION $SHOW_EASING;
 
 	@include min-screen($BREAKPOINT_S){
-
+		background: transparent;
+		color: $COLOR_GOLD;
 		&:hover {
 			background-color: rgba(190,166,122,0.6);
 		}
